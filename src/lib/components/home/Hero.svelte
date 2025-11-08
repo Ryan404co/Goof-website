@@ -4,8 +4,7 @@
   const lines: string[] = [
     'creatief bureau voor',
     'merken met een',
-    'eigen, eerlijke',
-    'uitstraling'
+    'rauw randje'
   ];
   const subtitle = `Goof staat voor luchtig, spontaan en - je raadt het al - goofy. Geen grote opgepoetste praatjes, maar merken met een eigen, eerlijke uitstraling. Met een speelse twist laat Goof de menselijkheid van jouw merk zien. Want Goof gelooft niet in degene die het hardste kan schreeuwen, maar in degene met de beste knipoog.`;
 </script>
@@ -63,10 +62,10 @@
   /* Right column headline with stepped highlight blocks (right-aligned staircase) */
   .hero__headline {
     justify-self: end;
-    font-weight: 500;
-    color: #2f3a34;
+    font-weight: 400;
+    color: #4A5B4C;
     font-size: clamp(2rem, 10vw, 80px);
-    line-height: 1.05;
+    line-height: 0.85;
     width: min(100%, 1100px);
     text-align: right;
   }
@@ -74,7 +73,6 @@
   .step {
     display: inline-block;
     position: relative;
-    background: #E0B20A;
     margin-left: calc(var(--i) * var(--step));
     padding: 0.12em 0.1em;
   }
