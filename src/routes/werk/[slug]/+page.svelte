@@ -8,6 +8,15 @@
 	$: story = data.story;
 	$: project = story.content;
 	$: moreProjects = data.moreProjects || [];
+
+	// Collect all available images
+	$: projectImages = [
+		project.afbeelding1,
+		project.afbeelding2,
+		project.afbeelding3,
+		project.afbeelding4,
+		project.afbeelding5
+	].filter(img => img?.filename);
 </script>
 
 <svelte:head>
@@ -47,13 +56,13 @@
 				<div class="meta">
 					{#if project.klant}
 						<div class="meta-item">
-							<span class="label">Klant</span>
+							<span class="label">klant</span>
 							<span class="value">{project.klant}</span>
 						</div>
 					{/if}
 					{#if project.jaar}
 						<div class="meta-item">
-							<span class="label">Jaar</span>
+							<span class="label">jaar</span>
 							<span class="value">{project.jaar}</span>
 						</div>
 					{/if}
@@ -74,24 +83,18 @@
 	</section>
 
 	<!-- Additional Images Grid -->
-	{#if project.afbeelding1?.filename || project.afbeelding2?.filename}
+	{#if projectImages.length > 0}
 		<section class="project-images">
 			<div class="container">
-				<div class="images-grid">
-					{#if project.afbeelding1?.filename}
+				<div class="images-grid" data-count={projectImages.length}>
+					{#each projectImages as image, index}
 						<img
-							src={project.afbeelding1.filename}
-							alt={project.afbeelding1.alt || story.name}
+							src={image.filename}
+							alt={image.alt || story.name}
 							loading="lazy"
+							class="img-{index + 1}"
 						/>
-					{/if}
-					{#if project.afbeelding2?.filename}
-						<img
-							src={project.afbeelding2.filename}
-							alt={project.afbeelding2.alt || story.name}
-							loading="lazy"
-						/>
-					{/if}
+					{/each}
 				</div>
 			</div>
 		</section>
@@ -172,7 +175,7 @@
 
 	/* Cover Image */
 	.project-cover {
-		background: #fdff96;
+		background: linear-gradient(to bottom, #fdff96 0%, #fdff96 50%, white 50%, white 100%);
 		padding-bottom: clamp(2rem, 4vw, 4rem);
 		overflow-x: hidden;
 	}
@@ -182,9 +185,7 @@
 		max-width: 100%;
 		height: auto;
 		display: block;
-		object-fit: cover;
 		border-radius: 20px;
-		max-height: 500px;
 		box-sizing: border-box;
 	}
 
@@ -199,9 +200,9 @@
 		border-radius: 20px;
 		padding: clamp(2rem, 4vw, 3rem);
 		display: grid;
-		grid-template-columns: 2fr 1fr 0.5fr;
+		grid-template-columns: 1.7fr 1fr 0.5fr;
 		gap: clamp(2rem, 4vw, 4rem);
-		align-items: flex-start;
+		align-items: flex-end;
 		max-width: 100%;
 		box-sizing: border-box;
 	}
@@ -210,8 +211,9 @@
 		color: #fdff96;
 		font-size: clamp(1.5rem, 2.5vw, 2rem);
 		font-weight: 700;
-		margin: 0 0 1rem 0;
+		margin: 0 0 2rem 0;
 		line-height: 1;
+		padding-top: 0;
 	}
 
 	.info-main p {
@@ -220,24 +222,28 @@
 		font-weight: 300;
 		line-height: 1.7;
 		opacity: 0.95;
+		margin: 0;
+		padding: 0;
 	}
 
 	.meta {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 2rem;
+		align-self: end;
+		margin-bottom: 2rem;
 	}
 
 	.meta-item {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 0.1rem;
 	}
 
 	.meta-item .label {
 		color: #fdff96;
-		font-size: clamp(1rem, 1.8vw, 1.4rem);
-		font-weight: 600;
+		font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+		font-weight: 400;
 		line-height: 1;
 	}
 
@@ -245,6 +251,7 @@
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.2vw, 1rem);
 		line-height: 1;
+		font-weight: 200;
 		padding-top: 8px;
 	}
 
@@ -253,16 +260,17 @@
 		flex-direction: column;
 		gap: 0.75rem;
 		align-items: flex-end;
+		justify-content: flex-end;
 	}
 
 	.tag {
 		background: transparent;
-		border: 2px solid #fdff96;
+		border: 1px solid #fdff96;
 		color: #fdff96;
-		padding: clamp(0.6rem, 1.2vw, 1rem) clamp(1.2rem, 2vw, 2rem);
+		padding: clamp(0.8rem, 1.5vw, 1.2rem) clamp(1.2rem, 2vw, 2rem);
 		border-radius: 50px;
 		font-size: clamp(1rem, 1.5vw, 1.3rem);
-		font-weight: 500;
+		font-weight: 400;
 		white-space: nowrap;
 		line-height: 1;
 		display: inline-flex;
@@ -277,17 +285,61 @@
 
 	.images-grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
 		gap: clamp(1rem, 2vw, 2rem);
 		max-width: 100%;
+	}
+
+	/* 3 images: all in one row */
+	.images-grid[data-count="3"] {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	/* 4 images: 2 rows with 2 images each */
+	.images-grid[data-count="4"] {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* 5 images: first row 2, second row 3 */
+	.images-grid[data-count="5"] {
+		grid-template-columns: repeat(6, 1fr);
+	}
+
+	.images-grid[data-count="5"] .img-1 {
+		grid-column: span 3;
+	}
+
+	.images-grid[data-count="5"] .img-2 {
+		grid-column: span 3;
+	}
+
+	.images-grid[data-count="5"] .img-3 {
+		grid-column: span 2;
+	}
+
+	.images-grid[data-count="5"] .img-4 {
+		grid-column: span 2;
+	}
+
+	.images-grid[data-count="5"] .img-5 {
+		grid-column: span 2;
+	}
+
+	/* Default for 1-2 images */
+	.images-grid[data-count="1"],
+	.images-grid[data-count="2"] {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.images-grid[data-count="1"] img {
+		grid-column: span 2;
 	}
 
 	.images-grid img {
 		width: 100%;
 		max-width: 100%;
-		height: auto;
+		height: 100%;
 		display: block;
-		object-fit: cover;
+		object-fit: contain;
 		border-radius: 20px;
 		background: #f5f5f5;
 		box-sizing: border-box;
@@ -302,7 +354,7 @@
 	/* More Work Section */
 	.more-work {
 		background: #4a5b4c;
-		padding: clamp(3rem, 6vw, 5rem) 0;
+		padding: clamp(1.5rem, 3vw, 2rem) 0 clamp(3rem, 6vw, 5rem) 0;
 		overflow-x: hidden;
 		font-family: 'Outfit', sans-serif;
 	}
@@ -318,7 +370,7 @@
 	.work-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: clamp(1.5rem, 3vw, 2.5rem);
+		gap: clamp(1rem, 2vw, 1.5rem);
 		max-width: 100%;
 	}
 
@@ -328,14 +380,9 @@
 		border-radius: 20px;
 		overflow: hidden;
 		background: #e8d9d9;
-		aspect-ratio: 5/3;
-		transition: transform 0.2s ease;
+		aspect-ratio: 8/5;
 		max-width: 100%;
 		text-decoration: none;
-	}
-
-	.work-card:hover {
-		transform: scale(1.02);
 	}
 
 	.work-card img,
@@ -354,19 +401,30 @@
 
 	.work-card__body {
 		position: absolute;
-		bottom: 1.5rem;
-		left: 1.5rem;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 2rem 1.5rem 1.5rem;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		transform: translateY(100%);
+		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		display: flex;
+		align-items: flex-end;
+	}
+
+	.work-card:hover .work-card__body {
+		transform: translateY(0);
 	}
 
 	.work-card__title {
 		margin: 0;
 		font-size: clamp(1.2rem, 2vw, 1.5rem);
-		font-weight: 700;
-		color: #4A5B4C;
-		background: #FDFF96;
-		padding: 0.5rem 1.25rem;
-		border-radius: 50px;
-		display: inline-block;
+		font-weight: 600;
+		color: #ffffff;
+		font-family: 'Outfit', sans-serif;
+		line-height: 1.3;
 	}
 
 	/* Responsive */
@@ -398,8 +456,23 @@
 			padding: 0 1rem;
 		}
 
-		.images-grid {
-			grid-template-columns: 1fr;
+		.images-grid,
+		.images-grid[data-count="3"],
+		.images-grid[data-count="4"],
+		.images-grid[data-count="5"] {
+			grid-template-columns: 1fr !important;
+		}
+
+		.images-grid[data-count="5"] .img-1,
+		.images-grid[data-count="5"] .img-2,
+		.images-grid[data-count="5"] .img-3,
+		.images-grid[data-count="5"] .img-4,
+		.images-grid[data-count="5"] .img-5 {
+			grid-column: span 1 !important;
+		}
+
+		.images-grid[data-count="1"] img {
+			grid-column: span 1 !important;
 		}
 
 		.work-grid {
@@ -474,16 +547,6 @@
 
 		.work-card {
 			border-radius: 12px;
-		}
-
-		.work-card__body {
-			bottom: 1rem;
-			left: 1rem;
-		}
-
-		.work-card__title {
-			font-size: 1rem;
-			padding: 0.4rem 1rem;
 		}
 	}
 </style>

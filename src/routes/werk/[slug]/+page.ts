@@ -16,7 +16,8 @@ export async function load({ params }) {
       starts_with: 'werk/',
       version: 'published',
       per_page: 100,
-      excluding_slugs: params.slug
+      excluding_slugs: params.slug,
+      sort_by: 'position:asc'
     });
 
     return {

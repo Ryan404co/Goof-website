@@ -8,7 +8,7 @@ export async function load() {
       starts_with: 'werk/',
       version: 'published',
       per_page: 100,
-      sort_by: 'first_published_at:desc'
+      sort_by: 'position:asc'
     });
 
     return {

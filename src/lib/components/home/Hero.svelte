@@ -47,13 +47,14 @@
     margin: 0 auto;
     padding-inline: 10px;
     padding-top: clamp(6vh, 12vh, 12vh);
+    padding-bottom: clamp(3rem, 6vh, 6rem);
   }
 
   /* Left column copy */
   .lead {
     max-width: 56ch;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 300;
     line-height: 1.8;
     color: #4A5B4C;
     margin: 0;
