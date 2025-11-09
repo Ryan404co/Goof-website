@@ -56,7 +56,7 @@
     .footer-section {
         background-color: #4a5b4c;
         padding: clamp(40px, 5vw, 60px) clamp(20px, 3vw, 40px);
-        margin: clamp(20px, 3vw, 40px) clamp(20px, 6vw, 80px) 0px clamp(20px, 6vw, 80px);
+        margin: clamp(20px, 3vw, 40px) 10px 0px 10px;
         border-radius: 20px 20px 0 0;
         font-family: 'Outfit', sans-serif;
     }
@@ -189,9 +189,10 @@
         text-align: right;
         color: #666;
         font-size: 0.9rem;
-        margin: 0;
-        padding: 20px 90px;
+        margin: 0 auto;
+        padding: 20px 10px;
         background-color: #f0f0f0;
+        max-width: 1400px;
     }
 
     @media (max-width: 1024px) {

@@ -4,8 +4,7 @@
   const lines: string[] = [
     'creatief bureau voor',
     'merken met een',
-    'eigen, eerlijke',
-    'uitstraling'
+    'rauw randje'
   ];
   const subtitle = `Goof staat voor luchtig, spontaan en - je raadt het al - goofy. Geen grote opgepoetste praatjes, maar merken met een eigen, eerlijke uitstraling. Met een speelse twist laat Goof de menselijkheid van jouw merk zien. Want Goof gelooft niet in degene die het hardste kan schreeuwen, maar in degene met de beste knipoog.`;
 </script>
@@ -29,7 +28,7 @@
 <style>
   .hero {
     width: 100%;
-    min-height: 70vh;
+    min-height: 40vh;
     overflow-x: hidden;
     background: #FDFF96;
     font-family: 'Outfit', sans-serif;
@@ -44,13 +43,14 @@
     margin: 0 auto;
     padding-inline: 10px;
     padding-top: clamp(6vh, 12vh, 12vh);
+    padding-bottom: clamp(3rem, 6vh, 6rem);
   }
 
   /* Left column copy */
   .lead {
     max-width: 56ch;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 300;
     line-height: 1.8;
     color: #4A5B4C;
     margin: 0;
@@ -59,10 +59,10 @@
   /* Right column headline with stepped highlight blocks (right-aligned staircase) */
   .hero__headline {
     justify-self: end;
-    font-weight: 500;
-    color: #2f3a34;
+    font-weight: 400;
+    color: #4A5B4C;
     font-size: clamp(2rem, 10vw, 80px);
-    line-height: 1.05;
+    line-height: 0.85;
     width: min(100%, 1100px);
     text-align: right;
   }
@@ -70,17 +70,13 @@
   .step {
     display: inline-block;
     position: relative;
-    background: #E0B20A;
     margin-left: calc(var(--i) * var(--step));
-    padding: 0.12em 0.25em;
+    padding: 0.12em 0.1em;
   }
 
   :root { --step: 4.2vw; }
   @media (max-width: 1024px) {
     :root { --step: 7vw; }
-    .hero {
-        min-height: 60vh;
-    }
     .hero__grid{
       grid-template-columns: 1fr;
       padding-top: 4vh;
@@ -89,15 +85,12 @@
       justify-self: start;
       text-align: left;
     }
+    .hero__copy {
+      display: none;
+    }
   }
-  
 
   @media (max-width: 768px) {
-    
-    .hero {
-        min-height: 55vh;
-    }
-
     .hero__grid {
       gap: 1.5rem;
     }
