@@ -23,7 +23,7 @@
     </div>
 
     <a href="#werk" class="mobile-cta">
-      Bekijk onze laatste projecten
+      Bekijk mijn laatste projecten
       <span class="arrow">↓</span>
     </a>
   </div>
