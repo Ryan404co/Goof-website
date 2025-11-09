@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { page } from '$app/stores';
 
   let menuOpen = false;
 
@@ -9,6 +10,11 @@
 
   function closeMenu() {
     menuOpen = false;
+  }
+
+  // Check if a link is active
+  function isActive(path: string): boolean {
+    return $page.url.pathname.startsWith(path);
   }
 
   // Close menu on escape key
@@ -28,10 +34,10 @@
       </a>
 
       <nav class="navpill" aria-label="Primary">
-        <a href="/werk">werk</a>
-        <a href="/diensten">diensten</a>
-        <a href="/over">over</a>
-        <a href="/contact">contact</a>
+        <a href="/werk" class:active={isActive('/werk')}>werk</a>
+        <a href="/diensten" class:active={isActive('/diensten')}>diensten</a>
+        <a href="/over" class:active={isActive('/over')}>over</a>
+        <a href="/contact" class:active={isActive('/contact')}>contact</a>
       </nav>
 
       <a href="/contact" class="cta">let's goof</a>
@@ -48,10 +54,10 @@
     {#if menuOpen}
       <div class="mobile-menu" on:click={closeMenu} on:keydown={(e) => e.key === 'Enter' && closeMenu()} role="button" tabindex="0">
         <nav class="mobile-nav">
-          <a href="/werk" on:click={closeMenu}>werk</a>
-          <a href="/diensten" on:click={closeMenu}>diensten</a>
-          <a href="/over" on:click={closeMenu}>over</a>
-          <a href="/contact" on:click={closeMenu}>contact</a>
+          <a href="/werk" on:click={closeMenu} class:active={isActive('/werk')}>werk</a>
+          <a href="/diensten" on:click={closeMenu} class:active={isActive('/diensten')}>diensten</a>
+          <a href="/over" on:click={closeMenu} class:active={isActive('/over')}>over</a>
+          <a href="/contact" on:click={closeMenu} class:active={isActive('/contact')}>contact</a>
           <a href="/contact" class="mobile-cta" on:click={closeMenu}>let's goof</a>
         </nav>
       </div>
@@ -109,8 +115,19 @@
     color: #4A5B4C;
     text-decoration: none;
     font-family: 'Outfit', sans-serif;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .navpill a:hover { color: #25302b; }
+  .navpill a:hover {
+    color: #25302b;
+    background: rgba(74, 91, 76, 0.05);
+  }
+  .navpill a.active {
+    border-color: #4A5B4C;
+    font-weight: 600;
+  }
 
   /* CTA on the right */
   .cta {
@@ -126,8 +143,12 @@
     font-weight: 700;
     border: 2px solid #4A5B4C;
     font-family: 'Outfit', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .cta:hover { filter: brightness(1.05); }
+  .cta:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 12px rgba(74, 91, 76, 0.3);
+  }
 
   /* Mobile menu button */
   .menu-toggle {
@@ -182,12 +203,20 @@
     font-size: 1.5rem;
     font-weight: 500;
     text-transform: lowercase;
-    padding: 0.5rem 0;
+    padding: 0.75rem 1rem;
     font-family: 'Outfit', sans-serif;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    transition: all 0.2s ease;
   }
 
   .mobile-nav a:hover {
     opacity: 0.8;
+  }
+
+  .mobile-nav a.active {
+    border-color: #FDFF96;
+    font-weight: 700;
   }
 
   .mobile-cta {

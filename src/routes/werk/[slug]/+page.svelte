@@ -176,7 +176,7 @@
 	/* Cover Image */
 	.project-cover {
 		background: linear-gradient(to bottom, #fdff96 0%, #fdff96 50%, white 50%, white 100%);
-		padding-bottom: clamp(2rem, 4vw, 4rem);
+		padding-bottom: clamp(1rem, 2vw, 1.5rem);
 		overflow-x: hidden;
 	}
 
@@ -191,7 +191,7 @@
 
 	/* Project Info Box */
 	.project-info {
-		padding: clamp(2rem, 4vw, 4rem) 0;
+		padding: clamp(1rem, 2vw, 1.5rem) 0;
 		overflow-x: hidden;
 	}
 
@@ -279,7 +279,7 @@
 
 	/* Project Images Grid */
 	.project-images {
-		padding: 0 0 clamp(2rem, 4vw, 3rem) 0;
+		padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(2rem, 4vw, 3rem) 0;
 		overflow-x: hidden;
 	}
 
