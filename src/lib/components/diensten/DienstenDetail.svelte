@@ -17,8 +17,8 @@
         }
 
         .workflow-section {
-            padding: 80px 40px;
-            margin: 0 80px;
+            padding: 80px 10px;
+            margin: 0;
         }
 
         .workflow-container {
@@ -123,8 +123,7 @@
 
         @media (max-width: 768px) {
             .workflow-section {
-                padding: 40px 20px;
-                margin: 0 20px;
+                padding: 40px 10px;
             }
 
             .workflow-header h1 {
@@ -138,12 +137,15 @@
             .workflow-card h2 {
                 font-size: 1.8rem;
             }
+
+            .design-list {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
             .workflow-section {
-                padding: 30px 15px;
-                margin: 0 10px;
+                padding: 30px 10px;
             }
 
             .workflow-header h1 {
@@ -152,14 +154,29 @@
 
             .workflow-card {
                 padding: 24px;
+                border-radius: 16px;
             }
 
             .workflow-card h2 {
                 font-size: 1.5rem;
+                margin-bottom: 20px;
             }
 
+            .workflow-step {
+                margin-bottom: 20px;
+            }
+
+            .workflow-step h3 {
+                font-size: 1rem;
+            }
+
+            .workflow-step p,
             .workflow-card p {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+            }
+
+            .design-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
