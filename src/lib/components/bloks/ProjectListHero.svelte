@@ -73,9 +73,6 @@
 								<div class="proj__ph"></div>
 							{/if}
 						</figure>
-						<div class="proj__body">
-							<h3 class="proj__title">{p.name}</h3>
-						</div>
 					</a>
 				{/each}
 			</div>
@@ -116,51 +113,48 @@
 		color: inherit;
 		overflow: hidden;
 		max-width: 100%;
+		transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.card.proj:hover {
+		border-radius: 60%;
+		transform: scale(0.95);
 	}
 
 	.proj__media {
 		margin: 0;
 		position: relative;
 		width: 100%;
+		overflow: hidden;
 	}
 	.proj__media img,
 	.proj__ph {
 		width: 100%;
-		aspect-ratio: 16/8;
+		aspect-ratio: 16/9;
 		object-fit: cover;
 		display: block;
 		box-sizing: border-box;
+		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.card.proj:hover .proj__media img,
+	.card.proj:hover .proj__ph {
+		transform: rotate(25deg) scale(1.2);
 	}
 	.proj__ph {
 		background: #ece7e4;
 	}
 
-	.proj__body {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		padding: 2rem 1.5rem 1.5rem;
-		background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		transform: translateY(100%);
-		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		display: flex;
-		align-items: flex-end;
-	}
+	@media (max-width: 768px) {
+		.card.proj:hover {
+			border-radius: 18px;
+			transform: none;
+		}
 
-	.card.proj:hover .proj__body {
-		transform: translateY(0);
-	}
-
-	.proj__title {
-		margin: 0;
-		font-size: clamp(1.2rem, 2vw, 1.5rem);
-		font-weight: 600;
-		color: #ffffff;
-		font-family: 'Outfit', sans-serif;
-		line-height: 1.3;
+		.card.proj:hover .proj__media img,
+		.card.proj:hover .proj__ph {
+			transform: none;
+		}
 	}
 
 	.muted {

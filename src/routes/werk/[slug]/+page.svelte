@@ -136,9 +136,6 @@
 					{:else}
 						<div class="placeholder"></div>
 					{/if}
-					<div class="work-card__body">
-						<h3 class="work-card__title">{otherProject.name}</h3>
-					</div>
 				</a>
 			{/each}
 		</div>
@@ -401,6 +398,12 @@
 		aspect-ratio: 8/5;
 		max-width: 100%;
 		text-decoration: none;
+		transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.work-card:hover {
+		border-radius: 60%;
+		transform: scale(0.95);
 	}
 
 	.work-card img,
@@ -411,41 +414,31 @@
 		object-fit: cover;
 		display: block;
 		box-sizing: border-box;
+		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.work-card:hover img,
+	.work-card:hover .placeholder {
+		transform: rotate(25deg) scale(1.2);
 	}
 
 	.work-card .placeholder {
 		background: #e8d9d9;
 	}
 
-	.work-card__body {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		padding: 2rem 1.5rem 1.5rem;
-		background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		transform: translateY(100%);
-		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		display: flex;
-		align-items: flex-end;
-	}
-
-	.work-card:hover .work-card__body {
-		transform: translateY(0);
-	}
-
-	.work-card__title {
-		margin: 0;
-		font-size: clamp(1.2rem, 2vw, 1.5rem);
-		font-weight: 600;
-		color: #ffffff;
-		font-family: 'Outfit', sans-serif;
-		line-height: 1.3;
-	}
-
 	/* Responsive */
+	@media (max-width: 768px) {
+		.work-card:hover {
+			border-radius: 20px;
+			transform: none;
+		}
+
+		.work-card:hover img,
+		.work-card:hover .placeholder {
+			transform: none;
+		}
+	}
+
 	@media (max-width: 1024px) {
 		.info-box {
 			grid-template-columns: 1fr;
