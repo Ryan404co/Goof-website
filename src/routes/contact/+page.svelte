@@ -188,7 +188,6 @@
 		font-weight: 1000;
 		color: #4a5b4c;
 		margin-bottom: 1rem;
-		text-transform: lowercase;
 	}
 
 	.form-intro p {
@@ -227,7 +226,6 @@
 		font-size: clamp(0.95rem, 1.1vw, 1.05rem);
 		font-family: inherit;
 		font-weight: 400;
-		text-transform: lowercase;
 		transition: border-color 0.2s ease;
 		box-sizing: border-box;
 	}
