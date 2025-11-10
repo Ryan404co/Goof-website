@@ -43,7 +43,7 @@
     margin: 0 auto;
     padding-inline: 10px;
     padding-top: clamp(6vh, 12vh, 12vh);
-    padding-bottom: clamp(3rem, 6vh, 6rem);
+    padding-bottom: clamp(10rem, 15vh, 15rem);
   }
 
   /* Left column copy */

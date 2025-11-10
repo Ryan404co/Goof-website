@@ -309,6 +309,12 @@
 	/* 4 images: 2 rows with 2 images each */
 	.images-grid[data-count="4"] {
 		grid-template-columns: repeat(2, 1fr);
+		grid-auto-rows: 1fr;
+	}
+
+	.images-grid[data-count="4"] img {
+		aspect-ratio: 16/9;
+		object-fit: cover;
 	}
 
 	/* 5 images: first row 2, second row 3 */

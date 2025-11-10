@@ -126,7 +126,6 @@
   }
   .navpill a.active {
     border-color: #4A5B4C;
-    font-weight: 600;
   }
 
   /* CTA on the right */
