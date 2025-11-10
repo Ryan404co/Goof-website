@@ -37,7 +37,13 @@
 	{#if project.hoofdAfbeelding?.filename}
 		<div class="project-cover">
 			<div class="container-full">
-				<img src={project.hoofdAfbeelding.filename} alt={story.name} />
+				<img
+					src={project.hoofdAfbeelding.filename}
+					alt={story.name}
+					loading="eager"
+					decoding="async"
+					fetchpriority="high"
+				/>
 			</div>
 		</div>
 	{/if}
@@ -92,6 +98,7 @@
 							src={image.filename}
 							alt={image.alt || story.name}
 							loading="lazy"
+							decoding="async"
 							class="img-{index + 1}"
 						/>
 					{/each}
@@ -120,7 +127,12 @@
 			{#each moreProjects.slice(0, 3) as otherProject}
 				<a href="/werk/{otherProject.slug}" class="work-card">
 					{#if otherProject.content?.hoofdAfbeelding?.filename}
-						<img src={otherProject.content.hoofdAfbeelding.filename} alt={otherProject.name} loading="lazy" />
+						<img
+							src={otherProject.content.hoofdAfbeelding.filename}
+							alt={otherProject.name}
+							loading="lazy"
+							decoding="async"
+						/>
 					{:else}
 						<div class="placeholder"></div>
 					{/if}

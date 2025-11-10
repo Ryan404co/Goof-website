@@ -25,6 +25,7 @@
 									src={project.content.hoofdAfbeelding.filename}
 									alt={project.name}
 									loading="lazy"
+									decoding="async"
 								/>
 							{:else}
 								<div class="proj__ph"></div>

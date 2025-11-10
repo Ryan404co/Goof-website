@@ -63,7 +63,12 @@
 					<a class="card proj" href={'/werk/' + p.slug} aria-label={p.name}>
 						<figure class="proj__media">
 							{#if p.content?.hoofdAfbeelding?.filename}
-								<img src={p.content.hoofdAfbeelding.filename} alt={p.name} />
+								<img
+									src={p.content.hoofdAfbeelding.filename}
+									alt={p.name}
+									loading="lazy"
+									decoding="async"
+								/>
 							{:else}
 								<div class="proj__ph"></div>
 							{/if}
