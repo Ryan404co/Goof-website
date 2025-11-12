@@ -14,7 +14,7 @@
 	<section class="contact-hero">
 		<div class="container-hero">
 			<h1>kennismaken?</h1>
-			<p class="subtitle">leuk! neem contact op en we plannen een gesprek.</p>
+			<p class="subtitle">leuk! neem contact op en we<br> plannen een gesprek.</p>
 
 			<div class="hero-content">
 				<div class="contact-info">
@@ -45,7 +45,7 @@
 			<div class="form-wrapper">
 				<div class="form-intro">
 					<h2>of stuur een bericht via het formulier</h2>
-					<p>en ik neem zo snel mogelijk contact met je op!</p>
+					<p>en ik neem zo snel<br>mogelijk contact<br>met je op!</p>
 				</div>
 
 				<form class="contact-form" method="POST">
@@ -100,7 +100,7 @@
 
 	.contact-hero h1 {
 		font-size: clamp(2.5rem, 5vw, 4rem);
-		font-weight: 500;
+		font-weight: 400;
 		margin-bottom: 1rem;
 		text-transform: lowercase;
 		color: #fdff96;
@@ -141,7 +141,7 @@
 
 	.info-item .value {
 		font-size: clamp(1rem, 1.3vw, 1.2rem);
-		font-weight: 300;
+		font-weight: 400;
 		color: #fdff96;
 		text-decoration: none;
 	}
@@ -157,7 +157,7 @@
 	.boring-label {
 		display: block;
 		font-size: clamp(1rem, 1.3vw, 1.2rem);
-		font-weight: 500;
+		font-weight: 600;
 		color: #fdff96;
 		margin-bottom: 0.5rem;
 		text-transform: lowercase;
@@ -165,7 +165,7 @@
 
 	.boring-stuff p {
 		font-size: clamp(0.9rem, 1.1vw, 1rem);
-		font-weight: 300;
+		font-weight: 400;
 		color: #fdff96;
 		margin: 0.25rem 0;
 	}
@@ -184,16 +184,19 @@
 	}
 
 	.form-intro h2 {
-		font-size: clamp(1.8rem, 3vw, 2.5rem);
-		font-weight: 1000;
+		font-size: clamp(2rem, 3vw, 2.5rem);
+		font-weight: 500;
 		color: #4a5b4c;
 		margin-bottom: 1rem;
+		text-transform: lowercase;
 	}
 
 	.form-intro p {
-		font-size: clamp(1rem, 1.3vw, 1.2rem);
-		font-weight: 600;
+		font-size: clamp(1.7rem, 2vw, 1.7rem);
+		font-weight: 400;
 		color: #4a5b4c;
+		line-height: 1.2;
+		text-transform: lowercase;
 	}
 
 	.contact-form {
@@ -257,6 +260,7 @@
 		border-radius: 12px;
 		font-size: clamp(1rem, 1.2vw, 1.1rem);
 		font-weight: 600;
+		font-family: 'Outfit', sans-serif;
 		text-transform: lowercase;
 		cursor: pointer;
 		transition: filter 0.2s ease;

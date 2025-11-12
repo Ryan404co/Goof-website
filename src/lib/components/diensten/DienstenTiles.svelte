@@ -29,7 +29,7 @@
         .section-title {
             color: #FDFF96;
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 600;
             margin-bottom: 20px;
             text-align: left;
         }

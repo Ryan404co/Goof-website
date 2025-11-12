@@ -50,7 +50,7 @@
   .lead {
     max-width: 56ch;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.8;
     color: #4A5B4C;
     margin: 0;

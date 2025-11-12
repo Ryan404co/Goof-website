@@ -54,7 +54,7 @@
   .lead {
     max-width: 56ch;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.8;
     color: #4A5B4C;
     margin: 0;
@@ -101,13 +101,10 @@
       align-items: center;
       gap: 0.5rem;
       font-size: 18px;
-      font-weight: 500;
-      color: #2f3a34;
+      font-weight: 400;
+      color: #4A5B4C;
       text-decoration: none;
       transition: transform 0.2s ease;
-    }
-    .mobile-cta:hover {
-      transform: translateY(2px);
     }
     .arrow {
       font-size: 22px;

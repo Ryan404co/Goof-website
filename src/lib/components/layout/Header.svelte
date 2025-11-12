@@ -139,7 +139,7 @@
     color: #FDFF96;      /* yellow text */
     text-decoration: none;
     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-    font-weight: 700;
+    font-weight: 400;
     border: 2px solid #4A5B4C;
     font-family: 'Outfit', sans-serif;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -200,7 +200,7 @@
     color: #FDFF96;
     text-decoration: none;
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 400;
     text-transform: lowercase;
     padding: 0.75rem 1rem;
     font-family: 'Outfit', sans-serif;
@@ -215,7 +215,7 @@
 
   .mobile-nav a.active {
     border-color: #FDFF96;
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .mobile-cta {
@@ -224,7 +224,7 @@
     padding: 1rem 2rem !important;
     border-radius: 50px;
     text-align: center;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     margin-top: auto;
   }
 

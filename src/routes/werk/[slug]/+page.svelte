@@ -178,7 +178,7 @@
 	.project-hero h1 {
 		color: #4a5b4c;
 		font-size: clamp(2.5rem, 5vw, 4rem);
-		font-weight: 500;
+		font-weight: 400;
 		line-height: 1.2;
 	}
 
@@ -219,7 +219,7 @@
 	.info-main h2 {
 		color: #fdff96;
 		font-size: clamp(1.5rem, 2.5vw, 2rem);
-		font-weight: 700;
+		font-weight: 600;
 		margin: 0 0 2rem 0;
 		line-height: 1;
 		padding-top: 0;
@@ -228,7 +228,7 @@
 	.info-main p {
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.2vw, 1rem);
-		font-weight: 300;
+		font-weight: 400;
 		line-height: 1.7;
 		opacity: 0.95;
 		margin: 0;
@@ -260,7 +260,7 @@
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.2vw, 1rem);
 		line-height: 1;
-		font-weight: 200;
+		font-weight: 400;
 		padding-top: 8px;
 	}
 
@@ -377,7 +377,7 @@
 	.more-work h2 {
 		color: #fdff96;
 		font-size: clamp(2rem, 4vw, 3rem);
-		font-weight: 500;
+		font-weight: 400;
 		margin-bottom: clamp(2rem, 3vw, 3rem);
 		text-transform: lowercase;
 	}

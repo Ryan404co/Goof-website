@@ -139,7 +139,7 @@
 		color: #4a5b4c; /* dark text */
 		text-decoration: none;
 		font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-		font-weight: 700;
+		font-weight: 400;
 		border: 2px solid #fdff96;
 		font-family: 'Outfit', sans-serif;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -200,7 +200,7 @@
 		color: #4a5b4c;
 		text-decoration: none;
 		font-size: 1.5rem;
-		font-weight: 500;
+		font-weight: 400;
 		text-transform: lowercase;
 		padding: 0.75rem 1rem;
 		font-family: 'Outfit', sans-serif;
