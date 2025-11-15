@@ -134,14 +134,14 @@
 
 	.info-item .label {
 		font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-		font-weight: 400;
+		font-weight: 300;
 		color: #fdff96;
 		text-transform: lowercase;
 	}
 
 	.info-item .value {
 		font-size: clamp(1rem, 1.3vw, 1.2rem);
-		font-weight: 400;
+		font-weight: 200;
 		color: #fdff96;
 		text-decoration: none;
 	}
@@ -157,7 +157,7 @@
 	.boring-label {
 		display: block;
 		font-size: clamp(1rem, 1.3vw, 1.2rem);
-		font-weight: 600;
+		font-weight: 300;
 		color: #fdff96;
 		margin-bottom: 0.5rem;
 		text-transform: lowercase;
@@ -165,7 +165,7 @@
 
 	.boring-stuff p {
 		font-size: clamp(0.9rem, 1.1vw, 1rem);
-		font-weight: 400;
+		font-weight: 200;
 		color: #fdff96;
 		margin: 0.25rem 0;
 	}

@@ -77,7 +77,7 @@
 		gap: 1rem;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding: clamp(1rem, 2rem, 2rem) 0 clamp(1rem, 1.5rem, 1.5rem);
+		padding: clamp(1rem, 1.5vw, 1.5rem) 0;
 	}
 
 	.brand {
@@ -109,6 +109,7 @@
 		border-radius: 50px;
 		border: 2px solid transparent;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		font-family: 'Outfit', sans-serif;
 	}
 
 	.navpill a:hover {
@@ -130,6 +131,7 @@
 		font-size: clamp(0.9rem, 1.2vw, 1.2rem);
 		font-weight: 400;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		font-family: 'Outfit', sans-serif;
 	}
 
 	.cta:hover {
@@ -188,6 +190,7 @@
 		border: 2px solid transparent;
 		border-radius: 50px;
 		transition: opacity 0.2s ease;
+		font-family: 'Outfit', sans-serif;
 	}
 
 	.mobile-nav a:hover {
@@ -196,15 +199,15 @@
 
 	.mobile-nav a.active {
 		border-color: #4a5b4c;
-		font-weight: 700;
 	}
 
 	.mobile-cta {
 		background: #4a5b4c;
 		color: #fdff96 !important;
 		padding: 1rem 2rem !important;
-		font-weight: 700 !important;
+		font-weight: 400 !important;
 		margin-top: auto;
+		font-family: 'Outfit', sans-serif;
 	}
 
 	@keyframes fadeIn {
