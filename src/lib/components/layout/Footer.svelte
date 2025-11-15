@@ -210,7 +210,7 @@
 
 	@media (max-width: 1024px) {
 		.footer-section {
-			margin: 20px 0 0 0;
+			margin: 0 0 0 0;
 		}
 
 		.footer-container {
