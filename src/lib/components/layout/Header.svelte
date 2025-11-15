@@ -239,6 +239,12 @@
   }
 
   /* Responsive behavior */
+  @media (max-width: 1024px) {
+    .header {
+      padding: 0;
+    }
+  }
+
   @media (max-width: 900px) {
     .shell {
       grid-template-columns: 1fr auto;

@@ -209,7 +209,10 @@
 	}
 
 	@media (max-width: 1024px) {
-		
+		.footer-section {
+			margin: 20px 0 0 0;
+		}
+
 		.footer-container {
 			flex-direction: column;
 			gap: 40px;
