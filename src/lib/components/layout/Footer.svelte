@@ -60,7 +60,7 @@
 	.footer-section {
 		background-color: #fdff96;
 		padding: clamp(40px, 5vw, 60px) clamp(20px, 3vw, 40px);
-		margin: clamp(20px, 3vw, 40px) 10px 0px 10px;
+		margin: clamp(20px, 3vw, 40px) 10px 0 10px;
 		border-radius: 20px 20px 0 0;
 		font-family: 'Outfit', sans-serif;
 	}
@@ -116,7 +116,6 @@
 		flex-direction: column;
 		align-items: flex-end;
 		gap: 20px;
-		margin-left: auto;
 	}
 
 	.footer-info-grid {
@@ -136,22 +135,19 @@
 
 	.footer-info-item {
 		color: #4a5b4c;
-		display: block !important;
-		flex-direction: initial !important;
 	}
 
 	.footer-info-item h3 {
 		font-size: 1.2rem;
-		margin-bottom: 10px;
+		margin: 0 0 10px 0;
 		font-weight: 400;
-		margin: 0 0 10px 0 !important;
 	}
 
 	.footer-info-item p {
 		font-size: 1rem;
 		line-height: 1.5;
 		font-weight: 200;
-		margin: 0 !important;
+		margin: 0;
 	}
 
 	.footer-info-item a {
@@ -203,14 +199,12 @@
 		margin: 0;
 		padding: 20px 90px;
 		background-color: #f0f0f0;
-		width: 100%;
-		max-width: 100%;
-		box-sizing: border-box;
+		font-family: 'Outfit', sans-serif;
 	}
 
 	@media (max-width: 1024px) {
 		.footer-section {
-			margin: 0 0 0 0;
+			margin: 0;
 		}
 
 		.footer-container {
@@ -223,12 +217,9 @@
 			align-items: flex-start;
 		}
 
-		.footer-social-icons {
-			justify-content: flex-start;
-		}
-
+		.footer-social-icons,
 		.footer-info-grid {
-			width: 100%;
+			justify-content: flex-start;
 		}
 
 		.footer-bottom-text {
@@ -242,32 +233,24 @@
 			padding: 40px 30px;
 		}
 
-		.footer-left h2 {
-			font-size: 2rem;
-		}
-
 		.footer-info-grid {
 			grid-template-columns: repeat(2, 1fr);
 			gap: 30px;
 		}
 
-		.footer-info-grid .footer-info-item:nth-child(4) {
-			grid-column: auto;
-		}
-
-		.footer-info-grid .footer-info-item:nth-child(5) {
+		.footer-info-grid .footer-info-item:nth-child(n+4) {
 			grid-column: auto;
 		}
 	}
 
 	@media (max-width: 480px) {
-		.footer-bottom-text {
-			padding: 20px 20px;
-		}
-
 		.footer-section {
 			margin: 20px 10px 0 10px;
 			padding: 30px 20px;
+		}
+
+		.footer-bottom-text {
+			padding: 20px;
 		}
 
 		.footer-cta-button {
@@ -275,20 +258,8 @@
 			font-size: 1rem;
 		}
 
-		.footer-left h2 {
-			font-size: 1.5rem;
-		}
-
 		.footer-info-grid {
 			grid-template-columns: 1fr;
-		}
-
-		.footer-info-grid .footer-info-item:nth-child(4) {
-			grid-column: auto;
-		}
-
-		.footer-info-grid .footer-info-item:nth-child(5) {
-			grid-column: auto;
 		}
 	}
 </style>

@@ -173,7 +173,8 @@
 	/* Form Section */
 	.contact-form-section {
 		background: #ffffff;
-		padding: clamp(3rem, 6vw, 6rem) 0;
+		padding: clamp(3rem, 6vw, 6rem) 10px;
+
 	}
 
 	.form-wrapper {

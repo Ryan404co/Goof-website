@@ -65,14 +65,11 @@
 </header>
 
 <style>
-  /* Header wrapper keeps sticky behavior defined in app.css .header */
   .header {
-    border-bottom: none;
     background: #FDFF96;
     padding: 0 10px;
   }
 
-  /* Yellow rounded container like the design */
   .shell {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -81,24 +78,18 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: clamp(1rem, 2rem, 2rem) 0 clamp(1rem, 1.5rem, 1.5rem);
-    border-radius: 28px;
   }
 
-  /* Brand */
   .brand {
     justify-self: start;
     text-decoration: none;
-    display: flex;
-    align-items: center;
   }
 
   .logo {
     height: clamp(40px, 5vw, 60px);
     width: auto;
-    display: block;
   }
 
-  /* Centered pill nav */
   .navpill {
     justify-self: center;
     display: inline-flex;
@@ -107,49 +98,45 @@
     padding: clamp(0.5rem, 0.75rem, 0.75rem) clamp(1.5rem, 2.5rem, 2.5rem);
     border-radius: 9999px;
     border: 2px solid #4A5B4C;
-    background: transparent;
   }
+
   .navpill a {
     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
     font-weight: 400;
     color: #4A5B4C;
     text-decoration: none;
-    font-family: 'Outfit', sans-serif;
     padding: 0.5rem 1rem;
     border-radius: 50px;
     border: 2px solid transparent;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   .navpill a:hover {
     color: #25302b;
     background: rgba(74, 91, 76, 0.05);
   }
+
   .navpill a.active {
     border-color: #4A5B4C;
   }
 
-  /* CTA on the right */
   .cta {
     justify-self: end;
-    display: inline-flex;
-    align-items: center;
     padding: clamp(0.75rem, 1rem, 1rem) clamp(1rem, 1.4rem, 1.4rem);
     border-radius: 9999px;
-    background: #4A5B4C; /* dark pill */
-    color: #FDFF96;      /* yellow text */
+    background: #4A5B4C;
+    color: #FDFF96;
     text-decoration: none;
     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
     font-weight: 400;
-    border: 2px solid #4A5B4C;
-    font-family: 'Outfit', sans-serif;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   .cta:hover {
     filter: brightness(1.1);
     box-shadow: 0 4px 12px rgba(74, 91, 76, 0.3);
   }
 
-  /* Mobile menu button */
   .menu-toggle {
     display: none;
     flex-direction: column;
@@ -166,16 +153,11 @@
     height: 3px;
     background: #4A5B4C;
     border-radius: 3px;
-    transition: all 0.3s ease;
   }
 
-  /* Mobile menu overlay */
   .mobile-menu {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     animation: fadeIn 0.2s ease;
@@ -203,10 +185,9 @@
     font-weight: 400;
     text-transform: lowercase;
     padding: 0.75rem 1rem;
-    font-family: 'Outfit', sans-serif;
     border: 2px solid transparent;
     border-radius: 50px;
-    transition: all 0.2s ease;
+    transition: opacity 0.2s ease;
   }
 
   .mobile-nav a:hover {
@@ -222,8 +203,6 @@
     background: #FDFF96;
     color: #4A5B4C !important;
     padding: 1rem 2rem !important;
-    border-radius: 50px;
-    text-align: center;
     font-weight: 600 !important;
     margin-top: auto;
   }
@@ -238,7 +217,6 @@
     to { transform: translateX(0); }
   }
 
-  /* Responsive behavior */
   @media (max-width: 1024px) {
     .header {
       padding: 0;
