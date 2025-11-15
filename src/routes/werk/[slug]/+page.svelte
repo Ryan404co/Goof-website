@@ -148,7 +148,8 @@
 	.project-detail {
 		background: #ffffff;
 		overflow-x: hidden;
-		max-width: 100vw;
+		max-width: 100%;
+		width: 100%;
 		font-family: 'Outfit', sans-serif;
 	}
 

@@ -14,10 +14,6 @@ html, body {
   font-family: 'Outfit', sans-serif;
 }
 
-html {
-  scrollbar-gutter: stable;
-}
-
 #svelte {
   margin: 0;
   padding: 0;

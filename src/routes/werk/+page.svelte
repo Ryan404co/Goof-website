@@ -46,7 +46,8 @@
 		background: linear-gradient(to bottom, #FDFF96 0%, #FDFF96 25%, white 25%, white 100%);
 		overflow-x: hidden;
 		min-height: 60vh;
-		max-width: 100vw;
+		max-width: 100%;
+		width: 100%;
 	}
 
 	.container {
