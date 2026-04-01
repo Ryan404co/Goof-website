@@ -248,11 +248,15 @@
 	@media (max-width: 480px) {
 		.footer-section {
 			margin: 20px auto 0 auto;
-			padding: 30px 1rem;
+			padding: 2.5rem 1.5rem;
+		}
+
+		.footer-container {
+			gap: 2.5rem;
 		}
 
 		.footer-bottom-text {
-			padding: 15px 1rem;
+			padding: 15px 1.5rem;
 		}
 
 		.footer-cta-button {
@@ -261,7 +265,12 @@
 		}
 
 		.footer-info-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+		}
+
+		.footer-social-icons {
+			grid-column: auto;
 		}
 	}
 </style>
