@@ -186,7 +186,7 @@
     color: #FDFF96;
     text-decoration: none;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 600;
     text-transform: lowercase;
     padding: 0.75rem 1rem;
     border: 1px solid transparent;
