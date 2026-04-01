@@ -69,6 +69,8 @@
 		background: #4a5b4c;
 		padding: 0 10px;
 		view-transition-name: header;
+		position: relative;
+		z-index: 1000;
 	}
 
 	.shell {
@@ -161,7 +163,7 @@
 		position: fixed;
 		inset: 0;
 		background: rgba(0, 0, 0, 0.5);
-		z-index: 999;
+		z-index: 1001;
 		animation: fadeIn 0.2s ease;
 	}
 
