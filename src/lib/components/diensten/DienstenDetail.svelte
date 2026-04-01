@@ -123,7 +123,7 @@
 
         @media (max-width: 768px) {
             .workflow-section {
-                padding: 40px 10px;
+                padding: 40px 1rem;
             }
 
             .workflow-header h1 {
@@ -145,7 +145,7 @@
 
         @media (max-width: 480px) {
             .workflow-section {
-                padding: 30px 10px;
+                padding: 30px 1rem;
             }
 
             .workflow-header h1 {

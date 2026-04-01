@@ -97,7 +97,7 @@
 
   @media (max-width: 768px) {
     .about-section {
-      padding: 40px 20px;
+      padding: 40px 1rem;
     }
 
     .about-content h1 {

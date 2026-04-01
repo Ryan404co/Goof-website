@@ -86,7 +86,7 @@
 
 	@media (max-width: 480px) {
 		.container {
-			padding: 0 0.75rem;
+			padding: 0 1rem;
 		}
 	}
 
@@ -103,7 +103,7 @@
 
 	.card.proj:hover {
 		border-radius: 60%;
-		transform: scale(0.95);
+		transform: scale(0.95) rotate(25deg);
 	}
 
 	.proj__media {
@@ -126,7 +126,7 @@
 
 	.card.proj:hover .proj__media img,
 	.card.proj:hover .proj__ph {
-		transform: rotate(25deg) scale(1.2);
+		transform: rotate(-25deg) scale(1.2);
 	}
 	.proj__ph {
 		background: #ece7e4;

@@ -55,7 +55,11 @@
 				<div class="info-main">
 					<h2>{project.projectTitel || 'lorem ipsum dolor sit amet'}</h2>
 					{#if project.projectBeschrijving}
-						<p>{project.projectBeschrijving}</p>
+						{#each project.projectBeschrijving.split('\n') as paragraph}
+							{#if paragraph.trim()}
+								<p>{paragraph}</p>
+							{/if}
+						{/each}
 					{/if}
 				</div>
 
@@ -232,8 +236,12 @@
 		font-weight: 400;
 		line-height: 1.7;
 		opacity: 0.95;
-		margin: 0;
+		margin: 0 0 1rem 0;
 		padding: 0;
+	}
+
+	.info-main p:last-child {
+		margin-bottom: 0;
 	}
 
 	.meta {
@@ -404,7 +412,7 @@
 
 	.work-card:hover {
 		border-radius: 60%;
-		transform: scale(0.95);
+		transform: scale(0.95) rotate(25deg);
 	}
 
 	.work-card img,
@@ -420,7 +428,7 @@
 
 	.work-card:hover img,
 	.work-card:hover .placeholder {
-		transform: rotate(25deg) scale(1.2);
+		transform: rotate(-25deg) scale(1.2);
 	}
 
 	.work-card .placeholder {
@@ -502,11 +510,11 @@
 
 	@media (max-width: 480px) {
 		.container {
-			padding: 0 0.75rem;
+			padding: 0 1rem;
 		}
 
 		.container-full {
-			padding: 0 0.75rem;
+			padding: 0 1rem;
 		}
 
 		.project-hero {

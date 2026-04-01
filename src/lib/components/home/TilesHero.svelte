@@ -37,7 +37,7 @@
 
         .service-card {
             background-color: transparent;
-            border: 2px solid #FDFF96;
+            border: 1px solid #FDFF96;
             border-radius: 20px;
             padding: 40px;
             transition: transform 0.3s ease;
@@ -80,7 +80,7 @@
 
         @media (max-width: 768px) {
             .services-section {
-                padding: 40px 10px;
+                padding: 40px 1rem;
             }
 
             .services-container {
@@ -93,6 +93,16 @@
 
             .service-card h2 {
                 font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-section {
+                padding: 30px 1rem;
+            }
+
+            .service-card {
+                padding: 24px;
             }
         }
     </style>

@@ -22,10 +22,6 @@
       {/each}
     </div>
 
-    <a href="#werk" class="mobile-cta">
-      Bekijk mijn laatste projecten
-      <span class="arrow">↓</span>
-    </a>
   </div>
 </section>
 
@@ -78,10 +74,6 @@
     padding: 0.12em 0.1em;
   }
 
-  .mobile-cta {
-    display: none;
-  }
-
   :root { --step: 4.2vw; }
   @media (max-width: 1024px) {
     :root { --step: 7vw; }
@@ -94,21 +86,7 @@
       text-align: left;
     }
     .hero__copy {
-      display: none;
-    }
-    .mobile-cta {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 18px;
-      font-weight: 400;
-      color: #4A5B4C;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-    .arrow {
-      font-size: 22px;
-      animation: bounce 2s infinite;
+      order: 2;
     }
   }
 
@@ -127,12 +105,4 @@
     }
   }
 
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(4px);
-    }
-  }
 </style>

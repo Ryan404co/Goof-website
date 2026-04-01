@@ -31,9 +31,9 @@
 
 				<div class="boring-stuff">
 					<span class="boring-label">boring stuff</span>
-					<p>KVK: XXXXXXXXXX</p>
-					<p>BTW: XXXXXXXXXX</p>
-					<p>IBAN: XXXXXXXXXX</p>
+					<p>KVK: 90939670</p>
+					<p>BTW: NL004067438B58</p>
+					<p>IBAN: NL89 KNAB 0776 3092 85</p>
 				</div>
 			</div>
 		</div>
@@ -100,7 +100,7 @@
 
 	.contact-hero h1 {
 		font-size: clamp(2.5rem, 5vw, 4rem);
-		font-weight: 400;
+		font-weight: 600;
 		margin-bottom: 1rem;
 		text-transform: lowercase;
 		color: #fdff96;
@@ -134,7 +134,7 @@
 
 	.info-item .label {
 		font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-		font-weight: 300;
+		font-weight: 600;
 		color: #fdff96;
 		text-transform: lowercase;
 	}
@@ -157,7 +157,7 @@
 	.boring-label {
 		display: block;
 		font-size: clamp(1rem, 1.3vw, 1.2rem);
-		font-weight: 300;
+		font-weight: 600;
 		color: #fdff96;
 		margin-bottom: 0.5rem;
 		text-transform: lowercase;
@@ -186,7 +186,7 @@
 
 	.form-intro h2 {
 		font-size: clamp(2rem, 3vw, 2.5rem);
-		font-weight: 500;
+		font-weight: 600;
 		color: #4a5b4c;
 		margin-bottom: 1rem;
 		text-transform: lowercase;
@@ -223,7 +223,7 @@
 	.contact-form textarea {
 		width: 100%;
 		padding: 1rem 1.5rem;
-		border: 2px solid #4a5b4c;
+		border: 1px solid #4a5b4c;
 		border-radius: 12px;
 		background: #fdff96;
 		color: #4a5b4c;
@@ -257,7 +257,7 @@
 		padding: 1.2rem 2rem;
 		background: #4a5b4c;
 		color: #fdff96;
-		border: 2px solid #4a5b4c;
+		border: 1px solid #4a5b4c;
 		border-radius: 12px;
 		font-size: clamp(1rem, 1.2vw, 1.1rem);
 		font-weight: 600;
@@ -295,7 +295,7 @@
 	@media (max-width: 480px) {
 		.container-hero {
 			padding: 0 1rem;
-			width: 90%;
+			width: 100%;
 		}
 
 		.contact-hero {
@@ -333,7 +333,7 @@
 		}
 
 		.contact-form-section {
-			padding: 2.5rem 0;
+			padding: 2.5rem 1rem;
 		}
 
 		.form-wrapper {

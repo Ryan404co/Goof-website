@@ -68,6 +68,7 @@
   .header {
     background: #FDFF96;
     padding: 0 10px;
+    view-transition-name: header;
   }
 
   .shell {
@@ -97,7 +98,7 @@
     gap: clamp(1.5rem, 2.5rem, 2.5rem);
     padding: clamp(0.5rem, 0.75rem, 0.75rem) clamp(1.5rem, 2.5rem, 2.5rem);
     border-radius: 9999px;
-    border: 2px solid #4A5B4C;
+    border: 1px solid #4A5B4C;
   }
 
   .navpill a {
@@ -107,7 +108,7 @@
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 50px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: 'Outfit', sans-serif;
   }
@@ -123,20 +124,19 @@
 
   .cta {
     justify-self: end;
-    padding: clamp(0.75rem, 1rem, 1rem) clamp(1rem, 1.4rem, 1.4rem);
-    border-radius: 9999px;
+    padding: 15px 35px;
+    border-radius: 50px;
     background: #4A5B4C;
     color: #FDFF96;
     text-decoration: none;
-    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
     font-weight: 400;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.3s ease;
     font-family: 'Outfit', sans-serif;
   }
 
   .cta:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 4px 12px rgba(74, 91, 76, 0.3);
+    background-color: #3a4f44;
   }
 
   .menu-toggle {
@@ -187,7 +187,7 @@
     font-weight: 400;
     text-transform: lowercase;
     padding: 0.75rem 1rem;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     border-radius: 50px;
     transition: opacity 0.2s ease;
     font-family: 'Outfit', sans-serif;
@@ -229,7 +229,7 @@
   @media (max-width: 900px) {
     .shell {
       grid-template-columns: 1fr auto;
-      padding: 1rem clamp(10px, 2vw, 20px);
+      padding: 1rem;
     }
 
     .logo {

@@ -48,7 +48,7 @@
 
         .service-card {
             background-color: transparent;
-            border: 2px solid #FDFF96;
+            border: 1px solid #FDFF96;
             border-radius: 20px;
             padding: 40px;
             transition: transform 0.3s ease;
@@ -91,7 +91,7 @@
 
         @media (max-width: 768px) {
             .services-section {
-                padding: 40px 10px;
+                padding: 40px 1rem;
             }
 
             .services-container {
@@ -109,7 +109,7 @@
 
         @media (max-width: 480px) {
             .services-section {
-                padding: 30px 10px;
+                padding: 30px 1rem;
             }
 
             .service-card {
@@ -130,7 +130,7 @@
 <body>
     <section class="services-section">
         <div class="services-wrapper">
-            <h2 class="section-title">Diensten</h2>
+            <h2 class="section-title">diensten</h2>
             <div class="services-container">
                 <div class="service-wrapper">
                 <div class="service-card">

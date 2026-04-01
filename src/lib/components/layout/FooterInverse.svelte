@@ -27,18 +27,17 @@
 				</div>
 
 				<div class="footer-info-item">
+					<h3>faxen</h3>
+					<p>wat is dat?</p>
+				</div>
+
+				<div class="footer-info-item">
 					<h3>postduif</h3>
 					<p>Oosterweg 87,<br />Groningen</p>
 				</div>
 
-				<div class="footer-info-item">
-					<h3>faxen</h3>
-					<p>wat is dat?</p>
-				</div>
-			</div>
-
-			<div class="footer-social-icons">
-				<a href="/" class="footer-social-icon linkedin-icon" aria-label="LinkedIn">
+				<div class="footer-social-icons">
+				<a href="https://www.linkedin.com/company/106263260" target="_blank" rel="noopener noreferrer" class="footer-social-icon linkedin-icon" aria-label="LinkedIn">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path
 							class="linkedin-logo"
@@ -46,28 +45,28 @@
 						/>
 					</svg>
 				</a>
-				<a href="/" class="footer-social-icon instagram-icon" aria-label="Instagram">
+				<a href="https://www.instagram.com/goofdesign.nl" target="_blank" rel="noopener noreferrer" class="footer-social-icon instagram-icon" aria-label="Instagram">
 					<img src="/instagram-svg/instagram-green.svg" alt="Instagram" />
 				</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
-<div class="footer-bottom-text">Algemene voorwaarden | Bedrijfsgegevens</div>
+<div class="footer-bottom-text">&copy; {new Date().getFullYear()} Goof Design</div>
 
 <style>
 	.footer-section {
 		background-color: #4a5b4c;
-		padding: clamp(40px, 5vw, 60px) clamp(20px, 3vw, 40px);
-		margin: clamp(20px, 3vw, 40px) 10px 0 10px;
+		padding: clamp(40px, 5vw, 60px) clamp(25px, 3vw, 40px);
+		max-width: 1400px;
+		margin: clamp(20px, 3vw, 40px) auto 0 auto;
 		border-radius: 20px 20px 0 0;
 		font-family: 'Outfit', sans-serif;
 	}
 
 	.footer-container {
-		max-width: 1400px;
-		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
@@ -82,8 +81,9 @@
 	.footer-left h2 {
 		color: #fdff96;
 		font-size: clamp(2rem, 4vw, 2.5rem);
-		margin-bottom: 20px;
-		font-weight: 400;
+		margin: 0 0 20px 0;
+		font-weight: 600;
+		line-height: 1;
 	}
 
 	.footer-left p {
@@ -140,7 +140,8 @@
 	.footer-info-item h3 {
 		font-size: 1.2rem;
 		margin: 0 0 10px 0;
-		font-weight: 400;
+		font-weight: 600;
+		line-height: 1;
 	}
 
 	.footer-info-item p {
@@ -162,12 +163,12 @@
 	.footer-social-icons {
 		display: flex;
 		gap: 15px;
-		justify-content: flex-end;
+		grid-column: 3;
 	}
 
 	.footer-social-icon {
-		width: 50px;
-		height: 50px;
+		width: 40px;
+		height: 40px;
 		background-color: #fdff96;
 		border-radius: 50%;
 		display: flex;
@@ -182,29 +183,30 @@
 	}
 
 	.footer-social-icon svg {
-		width: 36px;
-		height: 36px;
+		width: 28px;
+		height: 28px;
 		fill: #4a5b4c;
 	}
 
 	.footer-social-icon img {
-		width: 36px;
-		height: 36px;
+		width: 28px;
+		height: 28px;
 	}
 
 	.footer-bottom-text {
 		text-align: right;
 		color: #666;
 		font-size: 0.9rem;
-		margin: 0;
-		padding: 20px 90px;
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 20px clamp(25px, 3vw, 40px);
 		background-color: #f0f0f0;
 		font-family: 'Outfit', sans-serif;
 	}
 
 	@media (max-width: 1024px) {
 		.footer-section {
-			margin: 0;
+			margin: 0 auto;
 		}
 
 		.footer-container {
@@ -229,7 +231,7 @@
 
 	@media (max-width: 768px) {
 		.footer-section {
-			margin: 20px;
+			margin: 20px auto 0 auto;
 			padding: 40px 30px;
 		}
 
@@ -245,12 +247,12 @@
 
 	@media (max-width: 480px) {
 		.footer-section {
-			margin: 20px 10px 0 10px;
-			padding: 30px 20px;
+			margin: 20px auto 0 auto;
+			padding: 30px 1rem;
 		}
 
 		.footer-bottom-text {
-			padding: 20px;
+			padding: 15px 1rem;
 		}
 
 		.footer-cta-button {
