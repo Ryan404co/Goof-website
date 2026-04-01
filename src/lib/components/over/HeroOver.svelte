@@ -77,9 +77,13 @@
   :root { --step: 4.2vw; }
   @media (max-width: 1024px) {
     :root { --step: 7vw; }
+    .hero {
+      min-height: auto;
+    }
     .hero__grid{
       grid-template-columns: 1fr;
       padding-top: 4vh;
+      padding-bottom: 4rem;
     }
     .hero__headline{
       justify-self: start;
