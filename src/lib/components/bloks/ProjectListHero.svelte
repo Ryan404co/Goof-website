@@ -121,6 +121,10 @@
 		transform: scale(0.95) rotate(25deg);
 	}
 
+	.card.proj:nth-child(odd):hover {
+		transform: scale(0.95) rotate(-25deg);
+	}
+
 	.proj__media {
 		margin: 0;
 		position: relative;
@@ -140,6 +144,10 @@
 	.card.proj:hover .proj__media img,
 	.card.proj:hover .proj__ph {
 		transform: rotate(-25deg) scale(1.2);
+	}
+	.card.proj:nth-child(odd):hover .proj__media img,
+	.card.proj:nth-child(odd):hover .proj__ph {
+		transform: rotate(25deg) scale(1.2);
 	}
 	.proj__ph {
 		background: #ece7e4;
