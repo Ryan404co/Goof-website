@@ -224,11 +224,30 @@
 
   @media (max-width: 1024px) {
     .header {
-      padding: 0;
+      padding: 0 0.5rem;
+    }
+
+    .navpill {
+      gap: clamp(0.75rem, 1.5vw, 2rem);
+      padding: clamp(0.4rem, 0.6rem, 0.6rem) clamp(1rem, 1.8vw, 2rem);
+    }
+
+    .navpill a {
+      padding: 0.4rem 0.75rem;
+      font-size: clamp(0.85rem, 1.1vw, 1rem);
+    }
+
+    .cta {
+      padding: 12px 28px;
+      font-size: clamp(0.85rem, 1.1vw, 1rem);
     }
   }
 
   @media (max-width: 900px) {
+    .header {
+      padding: 0;
+    }
+
     .shell {
       grid-template-columns: 1fr auto;
       padding: 1rem;

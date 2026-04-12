@@ -78,6 +78,21 @@
             filter: brightness(0.95);
         }
 
+        @media (max-width: 900px) {
+            .services-section {
+                padding: 60px 1.5rem;
+            }
+
+            .services-container {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 30px;
+            }
+
+            .service-card {
+                padding: 35px;
+            }
+        }
+
         @media (max-width: 768px) {
             .services-section {
                 padding: 40px 1rem;
@@ -93,6 +108,21 @@
 
             .service-card h2 {
                 font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .services-section {
+                padding: 35px 1rem;
+            }
+
+            .service-card {
+                padding: 28px;
+                border-radius: 16px;
+            }
+
+            .service-card h2 {
+                font-size: 1.4rem;
             }
         }
 

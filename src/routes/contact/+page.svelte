@@ -82,7 +82,8 @@
 		width: 100%;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding: 0 10px;
+		padding: 0 clamp(1rem, 3vw, 2.5rem);
+		box-sizing: border-box;
 	}
 
 	.container-form {
@@ -96,6 +97,7 @@
 		background: #4a5b4c;
 		color: #fdff96;
 		padding: clamp(3rem, 6vw, 6rem) 0 clamp(3rem, 5vw, 5rem);
+		overflow-x: hidden;
 	}
 
 	.contact-hero h1 {
@@ -118,12 +120,15 @@
 		justify-content: space-between;
 		align-items: flex-start;
 		gap: clamp(2rem, 4vw, 4rem);
+		max-width: 100%;
+		overflow: hidden;
 	}
 
 	.contact-info {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
+		min-width: 0;
 	}
 
 	.info-item {
@@ -152,6 +157,8 @@
 
 	.boring-stuff {
 		text-align: right;
+		min-width: 0;
+		overflow-wrap: break-word;
 	}
 
 	.boring-label {
@@ -286,9 +293,46 @@
 		}
 	}
 
+	@media (max-width: 900px) {
+		.container-hero {
+			padding: 0 1.5rem;
+		}
+
+		.contact-form-section {
+			padding: clamp(2.5rem, 5vw, 5rem) 1.5rem;
+		}
+	}
+
 	@media (max-width: 768px) {
 		.form-row {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.contact-hero {
+			padding: clamp(2rem, 5vw, 4rem) 0 clamp(2rem, 4vw, 3rem);
+		}
+
+		.contact-hero h1 {
+			font-size: clamp(2rem, 5vw, 2.5rem);
+		}
+
+		.subtitle {
+			font-size: clamp(1rem, 2vw, 1.3rem);
+		}
+
+		.form-intro h2 {
+			font-size: clamp(1.5rem, 3vw, 2rem);
+		}
+
+		.form-intro p {
+			font-size: clamp(1rem, 2vw, 1.3rem);
+		}
+
+		.contact-form {
+			padding: clamp(1.5rem, 3vw, 2.5rem);
+			border-radius: 16px;
 		}
 	}
 

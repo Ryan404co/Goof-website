@@ -95,6 +95,25 @@
     }
   }
 
+  @media (max-width: 900px) {
+    .about-section {
+      padding: 60px 1.5rem;
+    }
+
+    .about-content h1 {
+      font-size: 3rem;
+    }
+
+    .about-image {
+      min-height: 350px;
+      border-radius: 16px;
+    }
+
+    .about-image img {
+      border-radius: 16px;
+    }
+  }
+
   @media (max-width: 768px) {
     .about-section {
       padding: 40px 1rem;
@@ -106,6 +125,29 @@
 
     .about-image {
       min-height: 300px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .about-section {
+      padding: 30px 1rem;
+    }
+
+    .about-content h1 {
+      font-size: 2rem;
+    }
+
+    .about-content p {
+      font-size: 0.95rem;
+    }
+
+    .about-image {
+      min-height: 250px;
+      border-radius: 12px;
+    }
+
+    .about-image img {
+      border-radius: 12px;
     }
   }
 </style>

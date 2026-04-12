@@ -74,6 +74,12 @@
 		gap: clamp(1.5rem, 3vw, 2rem);
 		max-width: 100%;
 	}
+	@media (max-width: 900px) {
+		.container {
+			padding: 0 1.5rem;
+		}
+	}
+
 	@media (max-width: 768px) {
 		.grid {
 			grid-template-columns: 1fr;
@@ -81,6 +87,16 @@
 
 		.container {
 			padding: 0 1rem;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.card.proj {
+			border-radius: 14px;
+		}
+
+		h1 {
+			font-size: clamp(2.5rem, 5vw, 4rem);
 		}
 	}
 

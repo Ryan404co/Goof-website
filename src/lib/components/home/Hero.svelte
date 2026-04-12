@@ -90,12 +90,33 @@
     }
   }
 
+  @media (max-width: 900px) {
+    .hero__grid {
+      padding-inline: 1.5rem;
+    }
+    .hero__headline {
+      font-size: clamp(2rem, 8vw, 60px);
+    }
+  }
+
   @media (max-width: 768px) {
     .hero__grid {
       gap: 1.5rem;
     }
     .step {
       margin-left: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero__grid {
+      padding-inline: 1.25rem;
+    }
+    .hero__headline {
+      font-size: clamp(2rem, 9vw, 48px);
+    }
+    .lead {
+      font-size: 15px;
     }
   }
 
