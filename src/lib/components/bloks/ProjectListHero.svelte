@@ -101,13 +101,13 @@
 
 	@media (max-width: 768px) {
 		.projects {
-			padding-inline: 1rem;
+			padding-inline: 0.5rem;
 		}
 	}
 
 	@media (max-width: 480px) {
 		.projects {
-			padding-inline: 1rem;
+			padding-inline: 0.5rem;
 		}
 	}
 
@@ -120,12 +120,6 @@
 	@media (max-width: 600px) {
 		.card.proj {
 			border-radius: 14px;
-		}
-	}
-
-	@media (max-width: 480px) {
-		.container {
-			padding: 0 1rem;
 		}
 	}
 

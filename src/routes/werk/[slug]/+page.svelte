@@ -634,7 +634,7 @@
 		}
 
 		.more-work {
-			padding: 2.5rem 0;
+			padding: 2.5rem 1rem;
 		}
 
 		.more-work h2 {

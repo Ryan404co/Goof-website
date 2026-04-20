@@ -124,7 +124,7 @@
     }
 
     .about-image {
-      height: 300px;
+      height: 460px;
     }
   }
 
@@ -142,7 +142,7 @@
     }
 
     .about-image {
-      height: 250px;
+      height: 420px;
       border-radius: 12px;
     }
 

@@ -273,22 +273,60 @@
 			bottom: 8px;
 			left: 8px;
 			right: 8px;
-			padding: 1.25rem;
+			padding: 0.9rem 1rem;
+			border-radius: 16px;
 		}
 
 		.cookie-banner__inner {
 			flex-direction: column;
 			align-items: stretch;
-			gap: 1rem;
+			justify-content: flex-start;
+			gap: 0.75rem;
+		}
+
+		.cookie-banner__text {
+			flex: 0 1 auto;
+		}
+
+		.cookie-banner h2 {
+			display: none;
+		}
+
+		.cookie-banner p {
+			font-size: 0.95rem;
+			line-height: 1.5;
 		}
 
 		.cookie-banner__actions {
-			justify-content: stretch;
+			flex-wrap: nowrap;
+			align-items: center;
+			gap: 0.5rem;
 		}
 
 		.cookie-banner__btn {
+			padding: 0.7rem 1.1rem;
+			font-size: 0.95rem;
+		}
+
+		.cookie-banner__btn--ghost,
+		.cookie-banner__btn:not(.cookie-banner__btn--link) {
 			flex: 1;
 			min-width: 0;
+		}
+
+		.cookie-banner__btn--link {
+			flex: 0 0 auto;
+			padding: 0.4rem 0;
+			font-size: 0.9rem;
+		}
+
+		.cookie-banner__options {
+			gap: 0.5rem;
+			margin-top: 0.5rem;
+		}
+
+		.cookie-banner__toggle {
+			font-size: 0.8rem;
 		}
 	}
 

@@ -440,6 +440,10 @@
 		.form-row {
 			grid-template-columns: 1fr;
 		}
+
+		.form-group {
+			margin-top: 0;
+		}
 	}
 
 	@media (max-width: 600px) {
