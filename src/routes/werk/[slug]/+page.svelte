@@ -33,7 +33,7 @@
 
 <Header />
 
-<article class="project-detail">
+<article id="main-content" class="project-detail">
 	<!-- Hero Section with Title -->
 	<section class="project-hero">
 		<div class="container">
@@ -418,11 +418,6 @@
 		transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.work-card:hover {
-		border-radius: 60%;
-		transform: scale(0.95) rotate(-25deg);
-	}
-
 	.work-card img,
 	.work-card .placeholder {
 		width: 100%;
@@ -434,9 +429,16 @@
 		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.work-card:hover img,
-	.work-card:hover .placeholder {
-		transform: rotate(25deg) scale(1.2);
+	@media (hover: hover) {
+		.work-card:hover {
+			border-radius: 60%;
+			transform: scale(0.95) rotate(-25deg);
+		}
+
+		.work-card:hover img,
+		.work-card:hover .placeholder {
+			transform: rotate(25deg) scale(1.2);
+		}
 	}
 
 	.work-card .placeholder {

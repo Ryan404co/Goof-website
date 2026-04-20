@@ -60,6 +60,8 @@
 	});
 </script>
 
+<a href="#main-content" class="skip-link">ga naar inhoud</a>
+
 <slot />
 
 <CookieBanner />
@@ -93,5 +95,28 @@
 
 	:global(::view-transition-new(root)) {
 		animation: slide-from-right 0.15s ease-out both;
+	}
+
+	.skip-link {
+		position: absolute;
+		top: -100px;
+		left: 10px;
+		z-index: 10000;
+		background: #4a5b4c;
+		color: #fdff96;
+		padding: 12px 20px;
+		border-radius: 50px;
+		text-decoration: none;
+		font-family: 'Outfit', sans-serif;
+		font-weight: 500;
+		font-size: 1rem;
+		text-transform: lowercase;
+		transition: top 0.15s ease-out;
+	}
+
+	.skip-link:focus {
+		top: 10px;
+		outline: 2px solid #fdff96;
+		outline-offset: 2px;
 	}
 </style>

@@ -16,7 +16,7 @@
 
 <Header />
 
-<main class="error-page">
+<main id="main-content" class="error-page">
 	<div class="error-wrap">
 		<div class="error-num">{status}</div>
 		<p class="error-msg">{message}</p>

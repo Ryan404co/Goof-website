@@ -16,7 +16,7 @@
 
 <HeaderInverse />
 
-<main class="contact-page">
+<main id="main-content" class="contact-page">
 	<!-- Hero Section -->
 	<section class="contact-hero">
 		<div class="container-hero">
@@ -80,41 +80,54 @@
 							</label>
 						</div>
 						<div class="form-row">
+							<label for="naam" class="visually-hidden">Voornaam</label>
 							<input
+								id="naam"
 								type="text"
 								name="naam"
 								placeholder="naam"
+								autocomplete="given-name"
 								value={form?.naam ?? ''}
 								required
 							/>
+							<label for="achternaam" class="visually-hidden">Achternaam</label>
 							<input
+								id="achternaam"
 								type="text"
 								name="achternaam"
 								placeholder="achternaam"
+								autocomplete="family-name"
 								value={form?.achternaam ?? ''}
 								required
 							/>
 						</div>
 
 						<div class="form-row">
+							<label for="telefoon" class="visually-hidden">Telefoonnummer</label>
 							<input
+								id="telefoon"
 								type="tel"
 								name="telefoon"
 								placeholder="telefoon"
+								autocomplete="tel"
 								value={form?.telefoon ?? ''}
 								required
 							/>
+							<label for="email" class="visually-hidden">E-mailadres</label>
 							<input
+								id="email"
 								type="email"
 								name="e-mail"
 								placeholder="e-mail"
+								autocomplete="email"
 								value={form?.email ?? ''}
 								required
 							/>
 						</div>
 
 						<div class="form-group">
-							<textarea name="bericht" placeholder="bericht" rows="8" required
+							<label for="bericht" class="visually-hidden">Bericht</label>
+							<textarea id="bericht" name="bericht" placeholder="bericht" rows="8" required
 								>{form?.bericht ?? ''}</textarea
 							>
 						</div>

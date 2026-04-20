@@ -15,7 +15,7 @@
 
 <Header />
 
-<section class="projects-page">
+<section id="main-content" class="projects-page">
 	<div class="container">
 		<h1>Werk</h1>
 
@@ -126,9 +126,16 @@
 		transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.card.proj:hover {
-		border-radius: 60%;
-		transform: scale(0.95) rotate(-25deg);
+	@media (hover: hover) {
+		.card.proj:hover {
+			border-radius: 60%;
+			transform: scale(0.95) rotate(-25deg);
+		}
+
+		.card.proj:hover .proj__media img,
+		.card.proj:hover .proj__ph {
+			transform: rotate(25deg) scale(1.2);
+		}
 	}
 
 	.proj__media {
@@ -149,10 +156,6 @@
 		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.card.proj:hover .proj__media img,
-	.card.proj:hover .proj__ph {
-		transform: rotate(25deg) scale(1.2);
-	}
 	.proj__ph {
 		background: #ece7e4;
 	}

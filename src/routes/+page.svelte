@@ -29,10 +29,12 @@
 </svelte:head>
 
 <Header />
+<div id="main-content">
 <Hero />
 
 <ProjectList projects={data.projects} />
 
 <TilesHero />
+</div>
 
 <Footer />

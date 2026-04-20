@@ -16,6 +16,7 @@
 />
 
 <Header />
+<div id="main-content">
 <HeroOver />
 
 {#if story?.content}
@@ -25,5 +26,6 @@
 {:else}
 	<p style="padding: 2rem; text-align: center;">No content found. Make sure the "over" page exists in Storyblok.</p>
 {/if}
+</div>
 
 <FooterInverse />

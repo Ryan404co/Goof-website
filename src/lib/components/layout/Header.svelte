@@ -43,7 +43,13 @@
       <a href="/contact" class="cta">let's goof</a>
 
       <!-- Mobile menu button -->
-      <button class="menu-toggle" on:click={toggleMenu} aria-label="Toggle menu">
+      <button
+        class="menu-toggle"
+        on:click={toggleMenu}
+        aria-label={menuOpen ? 'Menu sluiten' : 'Menu openen'}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-nav"
+      >
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
@@ -53,7 +59,7 @@
     <!-- Mobile menu -->
     {#if menuOpen}
       <div class="mobile-menu" on:click={closeMenu} on:keydown={(e) => e.key === 'Enter' && closeMenu()} role="button" tabindex="0">
-        <nav class="mobile-nav">
+        <nav id="mobile-nav" class="mobile-nav" aria-label="Mobiel menu">
           <a href="/werk" on:click={closeMenu} class:active={isActive('/werk')}>werk</a>
           <a href="/diensten" on:click={closeMenu} class:active={isActive('/diensten')}>diensten</a>
           <a href="/over" on:click={closeMenu} class:active={isActive('/over')}>over</a>

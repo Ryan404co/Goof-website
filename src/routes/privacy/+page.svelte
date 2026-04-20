@@ -12,7 +12,7 @@
 
 <HeaderInverse />
 
-<main class="legal">
+<main id="main-content" class="legal">
 	<div class="legal__wrap">
 		<h1>privacybeleid</h1>
 		<p class="lead">

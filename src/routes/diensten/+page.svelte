@@ -12,6 +12,8 @@
 />
 
 <HeaderInverse />
+<div id="main-content">
 <DienstenTiles />
 <DienstenDetail />
+</div>
 <FooterInverse />
