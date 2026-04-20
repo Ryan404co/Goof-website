@@ -11,8 +11,7 @@
       `Goof brengt merken de wereld in die echt zijn. Geen grote, opgepoetste praatjes en gepolijste perfectie, maar merken met echte verhalen en een eigen, eerlijke uitstraling. Of je je merk nu naar buiten brengt met een rauw randje of een goede knipoog, de wereld snakt naar iets echts. En precies dat is hoe Goof jouw bedrijf of organisatie omtovert tot een merk dat ogen opent.`
     ],
     [
-      `Wat is echt?`,
-      `Echt is rauw, echt heeft karakter, echt is knullig, echt is niet perfect, echt is oprecht en echt is wat het is.`
+      `Wat is echt? Echt is rauw, echt heeft karakter, echt is knullig, echt is niet perfect, echt is oprecht en echt is wat het is.`
     ]
   ];
 </script>

@@ -18,7 +18,7 @@
 
         .services-section {
             background-color: #4A5B4C;
-            padding: 120px 10px;
+            padding: 90px 10px 80px;
         }
 
         .services-wrapper {

@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 import { RESEND_API_KEY } from '$env/static/private';
 import type { Actions, PageServerLoad } from './$types';
 
-const TO_EMAIL = 'ryan@404co.nl';
+const TO_EMAIL = 'info@goof.design';
 const FROM_EMAIL = 'Goof Contact <noreply@goof.design>';
 const MAX_FIELD_LENGTH = 200;
 const MAX_MESSAGE_LENGTH = 5000;
