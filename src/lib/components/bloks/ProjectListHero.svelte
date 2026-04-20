@@ -2,19 +2,26 @@
 	import { onMount } from 'svelte';
 	import { useStoryblokApi } from '$lib/storyblok';
 	export let blok: any = null;
+	export let projects: any[] | undefined = undefined;
 	$: void blok;
+
+	const preloaded = Array.isArray(projects) && projects.length > 0;
 
 	const isDraft =
 		typeof window !== 'undefined' &&
 		(new URLSearchParams(window.location.search).has('_storyblok') ||
 			new URLSearchParams(window.location.search).get('version') === 'draft');
 
-	let projects: any[] = [];
-	let loading = true;
+	let internalProjects: any[] = preloaded ? projects! : [];
+	let loading = !preloaded;
 	let error = '';
 	let timedOut = false;
 
+	$: displayProjects = preloaded ? projects! : internalProjects;
+
 	onMount(async () => {
+		if (preloaded) return;
+
 		const timeout = setTimeout(() => {
 			if (loading) {
 				timedOut = true;
@@ -27,19 +34,17 @@
 			const api = useStoryblokApi();
 			const { data } = await api.get('cdn/stories', {
 				starts_with: 'werk/',
-				// Temporarily remove content_type filter to avoid mismatches during setup
-				// content_type: 'project',
 				version: isDraft ? 'draft' : 'published',
 				per_page: 6,
 				sort_by: 'position:asc'
 			});
-			projects = data.stories;
-			if (!projects || projects.length === 0) {
+			internalProjects = data.stories;
+			if (!internalProjects || internalProjects.length === 0) {
 				error =
 					'Geen projecten gevonden. Controleer dat de folder "werk" heet, de stories gepubliceerd zijn, en (optioneel) het content type "project" is.';
 			}
 			clearTimeout(timeout);
-		} catch (e) {
+		} catch (e: any) {
 			error = 'Kon projecten niet laden. ' + (e?.message || '');
 			clearTimeout(timeout);
 			console.error(e);
@@ -59,14 +64,15 @@
 			<p class="error">{error}</p>
 		{:else}
 			<div class="grid">
-				{#each projects as p}
+				{#each displayProjects as p, i}
 					<a class="card proj" href={'/werk/' + p.slug} aria-label={p.name}>
 						<figure class="proj__media">
 							{#if p.content?.hoofdAfbeelding?.filename}
 								<img
 									src={p.content.hoofdAfbeelding.filename}
 									alt={p.name}
-									loading="lazy"
+									loading={i < 2 ? 'eager' : 'lazy'}
+									fetchpriority={i < 2 ? 'high' : 'auto'}
 									decoding="async"
 								/>
 							{:else}

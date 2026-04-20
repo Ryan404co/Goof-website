@@ -5,6 +5,8 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import Seo from '$lib/components/Seo.svelte';
+
+	export let data;
 </script>
 
 <Seo
@@ -12,10 +14,18 @@
 	description="Goof brengt merken de wereld in die echt zijn. Branding, grafisch ontwerp en webdesign vanuit Groningen, met een knipoog en een rauw randje."
 />
 
+<svelte:head>
+	{#each (data.projects ?? []).slice(0, 2) as p}
+		{#if p.content?.hoofdAfbeelding?.filename}
+			<link rel="preload" as="image" href={p.content.hoofdAfbeelding.filename} fetchpriority="high" />
+		{/if}
+	{/each}
+</svelte:head>
+
 <Header />
 <Hero />
 
-<ProjectList />
+<ProjectList projects={data.projects} />
 
 <TilesHero />
 
