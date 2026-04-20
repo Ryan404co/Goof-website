@@ -105,7 +105,7 @@
 
 	.navpill a {
 		font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-		font-weight: 400;
+		font-weight: 300;
 		color: #fdff96;
 		text-decoration: none;
 		padding: 0.5rem 1rem;
@@ -132,7 +132,7 @@
 		color: #4a5b4c;
 		text-decoration: none;
 		font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-		font-weight: 400;
+		font-weight: 500;
 		transition: filter 0.2s ease;
 		font-family: 'Outfit', sans-serif;
 	}
@@ -186,7 +186,7 @@
 		color: #4a5b4c;
 		text-decoration: none;
 		font-size: 1.5rem;
-		font-weight: 600;
+		font-weight: 500;
 		text-transform: lowercase;
 		padding: 0.75rem 1rem;
 		border: 1px solid transparent;
@@ -207,7 +207,7 @@
 		background: #4a5b4c;
 		color: #fdff96 !important;
 		padding: 1rem 2rem !important;
-		font-weight: 400 !important;
+		font-weight: 500 !important;
 		margin-top: auto;
 		font-family: 'Outfit', sans-serif;
 	}

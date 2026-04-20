@@ -1,10 +1,17 @@
 <script lang="ts">
-  import Hero from '$lib/components/home/Hero.svelte';
-  import ProjectList from '$lib/components/bloks/ProjectListHero.svelte';
+	import Hero from '$lib/components/home/Hero.svelte';
+	import ProjectList from '$lib/components/bloks/ProjectListHero.svelte';
 	import TilesHero from '$lib/components/home/TilesHero.svelte';
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 </script>
+
+<Seo
+	title="Goof Design — Merken met een echt verhaal"
+	description="Goof brengt merken de wereld in die echt zijn. Branding, grafisch ontwerp en webdesign vanuit Groningen, met een knipoog en een rauw randje."
+/>
+
 <Header />
 <Hero />
 

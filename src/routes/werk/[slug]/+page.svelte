@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { StoryblokComponent } from '$lib/storyblok';
 
 	export let data;
@@ -9,7 +10,6 @@
 	$: project = story.content;
 	$: moreProjects = data.moreProjects || [];
 
-	// Collect all available images
 	$: projectImages = [
 		project.afbeelding1,
 		project.afbeelding2,
@@ -17,11 +17,19 @@
 		project.afbeelding4,
 		project.afbeelding5
 	].filter(img => img?.filename);
+
+	$: seoDescription =
+		project.projectBeschrijving?.split('\n')[0]?.slice(0, 155) ??
+		`Een project van Goof: ${story.name}. Branding, grafisch ontwerp of webdesign met een eigen verhaal.`;
+	$: seoImage = project.hoofdAfbeelding?.filename ?? 'https://goof.design/og-default.jpg';
 </script>
 
-<svelte:head>
-	<title>{story.name} - Goof</title>
-</svelte:head>
+<Seo
+	title={`${story.name.toLowerCase()} — Goof Design`}
+	description={seoDescription}
+	image={seoImage}
+	type="article"
+/>
 
 <Header />
 
@@ -161,7 +169,6 @@
 		width: 100%;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding: 0 10px;
 		box-sizing: border-box;
 	}
 
@@ -169,28 +176,29 @@
 		width: 100%;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding: 0 10px;
 		box-sizing: border-box;
 	}
 
 	/* Hero Section */
 	.project-hero {
 		background: #fdff96;
-		padding: clamp(3rem, 6vw, 5rem) 0 0;
+		padding: 90px 10px 0;
 		overflow-x: hidden;
 	}
 
 	.project-hero h1 {
 		color: #4a5b4c;
-		font-size: clamp(2.5rem, 5vw, 4rem);
-		font-weight: 400;
+		font-size: 2.5rem;
+		font-weight: 500;
 		line-height: 1.2;
+		text-transform: lowercase;
+		margin-bottom: 20px;
 	}
 
 	/* Cover Image */
 	.project-cover {
 		background: linear-gradient(to bottom, #fdff96 0%, #fdff96 50%, white 50%, white 100%);
-		padding-bottom: clamp(1rem, 2vw, 1.5rem);
+		padding: 0 10px clamp(1rem, 2vw, 1.5rem);
 		overflow-x: hidden;
 	}
 
@@ -205,7 +213,7 @@
 
 	/* Project Info Box */
 	.project-info {
-		padding: clamp(1rem, 2vw, 1.5rem) 0;
+		padding: clamp(1rem, 2vw, 1.5rem) 10px;
 		overflow-x: hidden;
 	}
 
@@ -224,7 +232,7 @@
 	.info-main h2 {
 		color: #fdff96;
 		font-size: clamp(1.5rem, 2.5vw, 2rem);
-		font-weight: 600;
+		font-weight: 500;
 		margin: 0 0 2rem 0;
 		line-height: 1;
 		padding-top: 0;
@@ -233,7 +241,7 @@
 	.info-main p {
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.2vw, 1rem);
-		font-weight: 400;
+		font-weight: 300;
 		line-height: 1.7;
 		opacity: 0.95;
 		margin: 0 0 1rem 0;
@@ -261,7 +269,7 @@
 	.meta-item .label {
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-		font-weight: 400;
+		font-weight: 500;
 		line-height: 1;
 	}
 
@@ -269,7 +277,7 @@
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.2vw, 1rem);
 		line-height: 1;
-		font-weight: 400;
+		font-weight: 300;
 		padding-top: 8px;
 	}
 
@@ -288,7 +296,7 @@
 		padding: clamp(0.8rem, 1.5vw, 1.2rem) clamp(1.2rem, 2vw, 2rem);
 		border-radius: 50px;
 		font-size: clamp(1rem, 1.5vw, 1.3rem);
-		font-weight: 400;
+		font-weight: 300;
 		white-space: nowrap;
 		line-height: 1;
 		display: inline-flex;
@@ -297,7 +305,7 @@
 
 	/* Project Images Grid */
 	.project-images {
-		padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(2rem, 4vw, 3rem) 0;
+		padding: clamp(1rem, 2vw, 1.5rem) 10px clamp(2rem, 4vw, 3rem);
 		overflow-x: hidden;
 	}
 
@@ -371,14 +379,14 @@
 
 	/* Project Content */
 	.project-content {
-		padding: clamp(2rem, 4vw, 3rem) 0;
+		padding: clamp(2rem, 4vw, 3rem) 10px;
 		overflow-x: hidden;
 	}
 
 	/* More Work Section */
 	.more-work {
 		background: #4a5b4c;
-		padding: clamp(1.5rem, 3vw, 2rem) 0 clamp(3rem, 6vw, 5rem) 0;
+		padding: clamp(1.5rem, 3vw, 2rem) 10px clamp(3rem, 6vw, 5rem);
 		overflow-x: hidden;
 		font-family: 'Outfit', sans-serif;
 	}
@@ -386,7 +394,7 @@
 	.more-work h2 {
 		color: #fdff96;
 		font-size: clamp(2rem, 4vw, 3rem);
-		font-weight: 400;
+		font-weight: 500;
 		margin-bottom: clamp(2rem, 3vw, 3rem);
 		text-transform: lowercase;
 	}
@@ -412,7 +420,7 @@
 
 	.work-card:hover {
 		border-radius: 60%;
-		transform: scale(0.95) rotate(25deg);
+		transform: scale(0.95) rotate(-25deg);
 	}
 
 	.work-card img,
@@ -428,7 +436,7 @@
 
 	.work-card:hover img,
 	.work-card:hover .placeholder {
-		transform: rotate(-25deg) scale(1.2);
+		transform: rotate(25deg) scale(1.2);
 	}
 
 	.work-card .placeholder {
@@ -460,12 +468,28 @@
 	}
 
 	@media (max-width: 900px) {
-		.container {
-			padding: 0 1.5rem;
+		.project-hero {
+			padding: 80px 1.5rem 0;
 		}
 
-		.container-full {
-			padding: 0 1.5rem;
+		.project-cover {
+			padding-inline: 1.5rem;
+		}
+
+		.project-info {
+			padding-inline: 1.5rem;
+		}
+
+		.project-images {
+			padding-inline: 1.5rem;
+		}
+
+		.project-content {
+			padding-inline: 1.5rem;
+		}
+
+		.more-work {
+			padding-inline: 1.5rem;
 		}
 
 		.info-box {
@@ -492,12 +516,28 @@
 	}
 
 	@media (max-width: 768px) {
-		.container {
-			padding: 0 1rem;
+		.project-hero {
+			padding: 40px 1rem 0;
 		}
 
-		.container-full {
-			padding: 0 1rem;
+		.project-cover {
+			padding-inline: 1rem;
+		}
+
+		.project-info {
+			padding-inline: 1rem;
+		}
+
+		.project-images {
+			padding-inline: 1rem;
+		}
+
+		.project-content {
+			padding-inline: 1rem;
+		}
+
+		.more-work {
+			padding-inline: 1rem;
 		}
 
 		.images-grid,
@@ -533,6 +573,14 @@
 	}
 
 	@media (max-width: 600px) {
+		.project-hero {
+			padding: 35px 1rem 0;
+		}
+
+		.project-hero h1 {
+			font-size: 2rem;
+		}
+
 		.info-box {
 			padding: clamp(1.5rem, 4vw, 2.5rem);
 			border-radius: 16px;
@@ -549,20 +597,8 @@
 	}
 
 	@media (max-width: 480px) {
-		.container {
-			padding: 0 1rem;
-		}
-
-		.container-full {
-			padding: 0 1rem;
-		}
-
 		.project-hero {
-			padding: 2rem 0 1.5rem;
-		}
-
-		.project-hero h1 {
-			font-size: 2rem;
+			padding: 30px 1rem 0;
 		}
 
 		.project-cover img {

@@ -29,7 +29,7 @@
         .section-title {
             color: #FDFF96;
             font-size: 2.5rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 20px;
             text-align: left;
         }
@@ -63,7 +63,7 @@
             color: #FDFF96;
             font-size: 2rem;
             margin-bottom: 20px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .service-card p {
@@ -80,7 +80,7 @@
             padding: 15px 40px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: filter 0.2s ease;
             align-self: flex-start;
         }

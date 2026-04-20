@@ -1,4 +1,5 @@
 <section class="footer-section">
+	<div class="footer-inner">
 	<div class="footer-container">
 		<div class="footer-left">
 			<h2>samenwerken?</h2>
@@ -52,18 +53,35 @@
 			</div>
 		</div>
 	</div>
+	</div>
 </section>
 
-<div class="footer-bottom-text">&copy; {new Date().getFullYear()} Goof Design</div>
+<div class="footer-bottom">
+<div class="footer-bottom-text">
+	<span>&copy; {new Date().getFullYear()} Goof Design</span>
+	<nav class="footer-legal" aria-label="Juridisch">
+		<a href="/privacy">privacy</a>
+		<a href="/cookies">cookies</a>
+		<a href="/voorwaarden">voorwaarden</a>
+	</nav>
+	<a href="https://404co.nl" target="_blank" rel="noopener noreferrer">Ontwikkeld door 404 collective</a>
+</div>
+</div>
 
 <style>
 	.footer-section {
 		background-color: #4a5b4c;
 		padding: clamp(40px, 5vw, 60px) clamp(25px, 3vw, 40px);
+		width: calc(100% - 20px);
 		max-width: 1400px;
 		margin: clamp(20px, 3vw, 40px) auto 0 auto;
 		border-radius: 20px 20px 0 0;
 		font-family: 'Outfit', sans-serif;
+		box-sizing: border-box;
+	}
+
+	.footer-inner {
+		width: 100%;
 	}
 
 	.footer-container {
@@ -82,7 +100,7 @@
 		color: #fdff96;
 		font-size: clamp(2rem, 4vw, 2.5rem);
 		margin: 0 0 20px 0;
-		font-weight: 600;
+		font-weight: 500;
 		line-height: 1;
 	}
 
@@ -101,7 +119,7 @@
 		padding: 18px 45px;
 		border-radius: 50px;
 		text-decoration: none;
-		font-weight: 400;
+		font-weight: 500;
 		font-size: 1.1rem;
 		transition: filter 0.2s ease;
 	}
@@ -140,14 +158,14 @@
 	.footer-info-item h3 {
 		font-size: 1.2rem;
 		margin: 0 0 10px 0;
-		font-weight: 600;
+		font-weight: 500;
 		line-height: 1;
 	}
 
 	.footer-info-item p {
 		font-size: 1rem;
 		line-height: 1.5;
-		font-weight: 200;
+		font-weight: 300;
 		margin: 0;
 	}
 
@@ -193,22 +211,42 @@
 		height: 28px;
 	}
 
-	.footer-bottom-text {
-		text-align: right;
-		color: #666;
-		font-size: 0.9rem;
+	.footer-bottom {
+		background-color: #f0f0f0;
+		width: calc(100% - 20px);
 		max-width: 1400px;
 		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
+	.footer-bottom-text {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		color: #666;
+		font-size: 0.9rem;
 		padding: 20px clamp(25px, 3vw, 40px);
-		background-color: #f0f0f0;
 		font-family: 'Outfit', sans-serif;
 	}
 
-	@media (max-width: 1024px) {
-		.footer-section {
-			margin: 0 auto;
-		}
+	.footer-bottom-text a {
+		color: inherit;
+		text-decoration: none;
+	}
 
+	.footer-bottom-text a:hover {
+		text-decoration: underline;
+	}
+
+	.footer-legal {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 1024px) {
 		.footer-container {
 			flex-direction: column;
 			gap: 40px;
@@ -223,15 +261,16 @@
 		.footer-info-grid {
 			justify-content: flex-start;
 		}
-
-		.footer-bottom-text {
-			text-align: left;
-		}
 	}
 
 	@media (max-width: 900px) {
 		.footer-section {
+			width: calc(100% - 48px);
 			padding: clamp(30px, 5vw, 50px) clamp(20px, 3vw, 35px);
+		}
+
+		.footer-bottom {
+			width: calc(100% - 48px);
 		}
 
 		.footer-container {
@@ -246,8 +285,12 @@
 
 	@media (max-width: 768px) {
 		.footer-section {
-			margin: 20px auto 0 auto;
+			width: calc(100% - 32px);
 			padding: 40px 30px;
+		}
+
+		.footer-bottom {
+			width: calc(100% - 32px);
 		}
 
 		.footer-info-grid {
@@ -286,7 +329,6 @@
 
 	@media (max-width: 480px) {
 		.footer-section {
-			margin: 20px auto 0 auto;
 			padding: 2.5rem 1.5rem;
 		}
 

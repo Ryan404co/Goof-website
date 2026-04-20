@@ -2,17 +2,31 @@
   // Hardcoded hero (no CMS)
   const STEP = '4.2vw';
   const lines: string[] = [
-    'creatief bureau voor',
-    'merken met een',
-    'rauw randje'
+    'streven om',
+    'de wereld iets',
+    'echts te geven'
   ];
-  const subtitle = `Goof staat voor luchtig, spontaan en - je raadt het al - goofy. Geen grote opgepoetste praatjes, maar merken met een eigen, eerlijke uitstraling. Met een speelse twist laat Goof de menselijkheid van jouw merk zien. Want Goof gelooft niet in degene die het hardste kan schreeuwen, maar in degene met de beste knipoog.`;
+  const subtitleParagraphs: string[][] = [
+    [
+      `Goof brengt merken de wereld in die echt zijn. Geen grote, opgepoetste praatjes en gepolijste perfectie, maar merken met echte verhalen en een eigen, eerlijke uitstraling. Of je je merk nu naar buiten brengt met een rauw randje of een goede knipoog, de wereld snakt naar iets echts. En precies dat is hoe Goof jouw bedrijf of organisatie omtovert tot een merk dat ogen opent.`
+    ],
+    [
+      `Wat is echt?`,
+      `Echt is rauw, echt heeft karakter, echt is knullig, echt is niet perfect, echt is oprecht en echt is wat het is.`
+    ]
+  ];
 </script>
 
 <section class="hero">
   <div class="hero__grid">
     <div class="hero__copy">
-      <p class="lead">{subtitle}</p>
+      {#each subtitleParagraphs as segments}
+        <p class="lead">
+          {#each segments as segment, i}
+            {#if i > 0}<br />{/if}{segment}
+          {/each}
+        </p>
+      {/each}
     </div>
 
     <div class="hero__headline" aria-label={lines.join(' ')}>
@@ -32,6 +46,7 @@
     overflow-x: hidden;
     background: #FDFF96;
     font-family: 'Outfit', sans-serif;
+    padding-inline: 10px;
   }
 
   .hero__grid {
@@ -41,16 +56,21 @@
     align-items: end;
     max-width: 1400px;
     margin: 0 auto;
-    padding-inline: 10px;
     padding-top: clamp(6vh, 12vh, 12vh);
     padding-bottom: clamp(10rem, 15vh, 15rem);
   }
 
   /* Left column copy */
+  .hero__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
   .lead {
     max-width: 56ch;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.8;
     color: #4A5B4C;
     margin: 0;
@@ -59,7 +79,7 @@
   /* Right column headline with stepped highlight blocks (right-aligned staircase) */
   .hero__headline {
     justify-self: end;
-    font-weight: 400;
+    font-weight: 500;
     color: #4A5B4C;
     font-size: clamp(2rem, 10vw, 80px);
     line-height: 0.85;
@@ -90,12 +110,12 @@
       text-align: left;
     }
     .hero__copy {
-      display: none;
+      order: 2;
     }
   }
 
   @media (max-width: 900px) {
-    .hero__grid {
+    .hero {
       padding-inline: 1.5rem;
     }
     .hero__headline {
@@ -113,7 +133,7 @@
   }
 
   @media (max-width: 600px) {
-    .hero__grid {
+    .hero {
       padding-inline: 1.25rem;
     }
     .hero__headline {
@@ -122,7 +142,7 @@
   }
 
   @media (max-width: 480px) {
-    .hero__grid {
+    .hero {
       padding-inline: 1rem;
     }
   }

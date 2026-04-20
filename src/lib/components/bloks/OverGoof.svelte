@@ -36,12 +36,12 @@
 <style>
   .about-section {
     padding: 80px 10px;
-    max-width: 1400px;
-    margin: 0 auto;
     font-family: 'Outfit', sans-serif;
   }
 
   .about-container {
+    max-width: 1400px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
@@ -52,7 +52,7 @@
     color: #4A5B4C;
     font-size: 3.5rem;
     margin-bottom: 30px;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: lowercase;
   }
 
@@ -68,7 +68,7 @@
     background-color: #e8d9d9;
     border-radius: 20px;
     width: 100%;
-    min-height: 500px;
+    height: 640px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,7 +90,7 @@
     }
 
     .about-image {
-      min-height: 400px;
+      height: 340px;
       order: -1;
     }
   }
@@ -105,7 +105,7 @@
     }
 
     .about-image {
-      min-height: 350px;
+      height: 320px;
       border-radius: 16px;
     }
 
@@ -124,7 +124,7 @@
     }
 
     .about-image {
-      min-height: 300px;
+      height: 300px;
     }
   }
 
@@ -142,7 +142,7 @@
     }
 
     .about-image {
-      min-height: 250px;
+      height: 250px;
       border-radius: 12px;
     }
 

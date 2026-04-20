@@ -34,7 +34,7 @@
             color: #4A5B4C;
             font-size: 3rem;
             margin-bottom: 20px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .workflow-intro {
@@ -61,7 +61,7 @@
             color: #4A5B4C;
             font-size: 2rem;
             margin-bottom: 30px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .workflow-step {
@@ -72,7 +72,7 @@
             color: #4A5B4C;
             font-size: 1.1rem;
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .workflow-step p {
@@ -89,7 +89,7 @@
             color: #4A5B4C;
             font-size: 1rem;
             margin-bottom: 15px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .design-list {

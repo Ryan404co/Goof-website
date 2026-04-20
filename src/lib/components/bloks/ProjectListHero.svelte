@@ -82,7 +82,7 @@
 
 <style>
 	.projects {
-		padding: clamp(2rem, 8vw, 8rem) 0;
+		padding: clamp(2rem, 8vw, 8rem) 10px;
 		background: linear-gradient(to bottom, #FDFF96 0%, #FDFF96 25%, white 25%, white 100%);
 		overflow-x: hidden;
 		font-family: 'Outfit', sans-serif;
@@ -94,8 +94,20 @@
 		gap: clamp(1.5rem, 3vw, 2rem);
 	}
 	@media (max-width: 900px) {
-		.container {
-			padding: 0 1.5rem;
+		.projects {
+			padding-inline: 1.5rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.projects {
+			padding-inline: 1rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.projects {
+			padding-inline: 1rem;
 		}
 	}
 
@@ -130,10 +142,6 @@
 
 	.card.proj:hover {
 		border-radius: 60%;
-		transform: scale(0.95) rotate(25deg);
-	}
-
-	.card.proj:nth-child(odd):hover {
 		transform: scale(0.95) rotate(-25deg);
 	}
 
@@ -155,10 +163,6 @@
 
 	.card.proj:hover .proj__media img,
 	.card.proj:hover .proj__ph {
-		transform: rotate(-25deg) scale(1.2);
-	}
-	.card.proj:nth-child(odd):hover .proj__media img,
-	.card.proj:nth-child(odd):hover .proj__ph {
 		transform: rotate(25deg) scale(1.2);
 	}
 	.proj__ph {
@@ -188,6 +192,5 @@
 		width: 100%;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding: 0 10px;
 	}
 </style>

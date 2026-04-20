@@ -52,7 +52,7 @@
             color: #FDFF96;
             font-size: 2rem;
             margin-bottom: 20px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .service-card p {
@@ -60,6 +60,7 @@
             line-height: 1.6;
             margin-bottom: 0;
             font-size: 1rem;
+            font-weight: 300;
         }
 
         .service-button {
@@ -69,7 +70,7 @@
             padding: 15px 40px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: background-color 0.3s ease;
             align-self: flex-start;
         }
