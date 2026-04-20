@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { useStoryblokApi } from '$lib/storyblok';
+	import { optimizeStoryblokImage } from '$lib/storyblokImage';
 	export let blok: any = null;
 	export let projects: any[] | undefined = undefined;
 	$: void blok;
@@ -69,9 +70,9 @@
 						<figure class="proj__media">
 							{#if p.content?.hoofdAfbeelding?.filename}
 								<img
-									src={p.content.hoofdAfbeelding.filename}
+									src={optimizeStoryblokImage(p.content.hoofdAfbeelding.filename, 1200)}
 									alt={p.name}
-									loading={i < 2 ? 'eager' : 'lazy'}
+									loading="eager"
 									fetchpriority={i < 2 ? 'high' : 'auto'}
 									decoding="async"
 								/>

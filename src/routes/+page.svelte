@@ -5,6 +5,7 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import Seo from '$lib/components/Seo.svelte';
+	import { optimizeStoryblokImage } from '$lib/storyblokImage';
 
 	export let data;
 </script>
@@ -17,7 +18,12 @@
 <svelte:head>
 	{#each (data.projects ?? []).slice(0, 2) as p}
 		{#if p.content?.hoofdAfbeelding?.filename}
-			<link rel="preload" as="image" href={p.content.hoofdAfbeelding.filename} fetchpriority="high" />
+			<link
+				rel="preload"
+				as="image"
+				href={optimizeStoryblokImage(p.content.hoofdAfbeelding.filename, 1200)}
+				fetchpriority="high"
+			/>
 		{/if}
 	{/each}
 </svelte:head>
