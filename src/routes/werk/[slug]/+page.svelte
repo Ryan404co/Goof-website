@@ -2,30 +2,48 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import Seo from '$lib/components/Seo.svelte';
-	import { StoryblokComponent } from '$lib/storyblok';
+	import { optimizeImage, srcSet } from '$lib/storyblokImage';
+	import type { PageData } from './$types';
 
-	export let data;
+	export let data: PageData;
 
-	$: story = data.story;
-	$: project = story.content;
-	$: moreProjects = data.moreProjects || [];
+	$: project = data.project;
+	$: moreProjects = data.moreProjects ?? [];
 
-	$: projectImages = [
-		project.afbeelding1,
-		project.afbeelding2,
-		project.afbeelding3,
-		project.afbeelding4,
-		project.afbeelding5
-	].filter(img => img?.filename);
+	$: projectImages = (project.afbeeldingen ?? []).filter((img: { url: string }) => img?.url);
 
 	$: seoDescription =
-		project.projectBeschrijving?.split('\n')[0]?.slice(0, 155) ??
-		`Een project van Goof: ${story.name}. Branding, grafisch ontwerp of webdesign met een eigen verhaal.`;
-	$: seoImage = project.hoofdAfbeelding?.filename ?? 'https://goof.design/og-default.jpg';
+		project.meta_description ??
+		project.project_beschrijving?.split('\n')[0]?.slice(0, 155) ??
+		`Een project van Goof: ${project.name}. Branding, grafisch ontwerp of webdesign met een eigen verhaal.`;
+	$: seoImage = project.hoofd_afbeelding_url
+		? optimizeImage(project.hoofd_afbeelding_url, 1200)
+		: 'https://goof.design/og-default.jpg';
+
+	// Hero is full-bleed up to 1400px container; gallery cells vary by count
+	const HERO_WIDTHS = [800, 1200, 1600, 2000];
+	const HERO_SIZES = '(min-width: 1400px) 1400px, 100vw';
+	const GALLERY_WIDTHS = [400, 800, 1200, 1600];
+	const GALLERY_SIZES = '(min-width: 1024px) 700px, 100vw';
+	const MOREWORK_WIDTHS = [400, 600, 800];
+	const MOREWORK_SIZES = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw';
 </script>
 
+<svelte:head>
+	{#if project.hoofd_afbeelding_url}
+		<link
+			rel="preload"
+			as="image"
+			href={optimizeImage(project.hoofd_afbeelding_url, 1600)}
+			imagesrcset={srcSet(project.hoofd_afbeelding_url, HERO_WIDTHS)}
+			imagesizes={HERO_SIZES}
+			fetchpriority="high"
+		/>
+	{/if}
+</svelte:head>
+
 <Seo
-	title={`${story.name.toLowerCase()} — Goof Design`}
+	title={`${project.name.toLowerCase()} — Goof Design`}
 	description={seoDescription}
 	image={seoImage}
 	type="article"
@@ -34,20 +52,22 @@
 <Header />
 
 <article id="main-content" class="project-detail">
-	<!-- Hero Section with Title -->
 	<section class="project-hero">
 		<div class="container">
-			<h1>{story.name}</h1>
+			<h1>{project.name}</h1>
 		</div>
 	</section>
 
-	<!-- Cover Image -->
-	{#if project.hoofdAfbeelding?.filename}
+	{#if project.hoofd_afbeelding_url}
 		<div class="project-cover">
 			<div class="container-full">
 				<img
-					src={project.hoofdAfbeelding.filename}
-					alt={story.name}
+					src={optimizeImage(project.hoofd_afbeelding_url, 1600)}
+					srcset={srcSet(project.hoofd_afbeelding_url, HERO_WIDTHS)}
+					sizes={HERO_SIZES}
+					alt={project.hoofd_afbeelding_alt || project.name}
+					width="1600"
+					height="900"
 					loading="eager"
 					decoding="async"
 					fetchpriority="high"
@@ -56,14 +76,13 @@
 		</div>
 	{/if}
 
-	<!-- Project Info Box -->
 	<section class="project-info">
 		<div class="container">
 			<div class="info-box">
 				<div class="info-main">
-					<h2>{project.projectTitel || 'lorem ipsum dolor sit amet'}</h2>
-					{#if project.projectBeschrijving}
-						{#each project.projectBeschrijving.split('\n') as paragraph}
+					<h2>{project.project_titel || 'lorem ipsum dolor sit amet'}</h2>
+					{#if project.project_beschrijving}
+						{#each project.project_beschrijving.split('\n') as paragraph}
 							{#if paragraph.trim()}
 								<p>{paragraph}</p>
 							{/if}
@@ -100,15 +119,16 @@
 		</div>
 	</section>
 
-	<!-- Additional Images Grid -->
 	{#if projectImages.length > 0}
 		<section class="project-images">
 			<div class="container">
 				<div class="images-grid" data-count={projectImages.length}>
 					{#each projectImages as image, index}
 						<img
-							src={image.filename}
-							alt={image.alt || story.name}
+							src={optimizeImage(image.url, 1200)}
+							srcset={srcSet(image.url, GALLERY_WIDTHS)}
+							sizes={GALLERY_SIZES}
+							alt={image.alt || project.name}
 							loading="lazy"
 							decoding="async"
 							class="img-{index + 1}"
@@ -118,30 +138,22 @@
 			</div>
 		</section>
 	{/if}
-
-	<!-- Project Content Blocks -->
-	{#if project.body}
-		<div class="project-content">
-			<div class="container">
-				{#each project.body as blok}
-					<StoryblokComponent {blok} />
-				{/each}
-			</div>
-		</div>
-	{/if}
 </article>
 
-<!-- More Work Section -->
 <section class="more-work">
 	<div class="container-full">
 		<h2>meer werk</h2>
 		<div class="work-grid">
 			{#each moreProjects.slice(0, 3) as otherProject}
 				<a href="/werk/{otherProject.slug}" class="work-card">
-					{#if otherProject.content?.hoofdAfbeelding?.filename}
+					{#if otherProject.hoofd_afbeelding_url}
 						<img
-							src={otherProject.content.hoofdAfbeelding.filename}
-							alt={otherProject.name}
+							src={optimizeImage(otherProject.hoofd_afbeelding_url, 600)}
+							srcset={srcSet(otherProject.hoofd_afbeelding_url, MOREWORK_WIDTHS)}
+							sizes={MOREWORK_SIZES}
+							alt={otherProject.hoofd_afbeelding_alt || otherProject.name}
+							width="600"
+							height="375"
 							loading="lazy"
 							decoding="async"
 						/>
@@ -164,28 +176,14 @@
 		width: 100%;
 		font-family: 'Outfit', sans-serif;
 	}
+	.container { width: 100%; max-width: 1400px; margin: 0 auto; box-sizing: border-box; }
+	.container-full { width: 100%; max-width: 1400px; margin: 0 auto; box-sizing: border-box; }
 
-	.container {
-		width: 100%;
-		max-width: 1400px;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	.container-full {
-		width: 100%;
-		max-width: 1400px;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	/* Hero Section */
 	.project-hero {
 		background: #fdff96;
 		padding: 90px 10px 0;
 		overflow-x: hidden;
 	}
-
 	.project-hero h1 {
 		color: #4a5b4c;
 		font-size: 2.5rem;
@@ -195,28 +193,25 @@
 		margin-bottom: 20px;
 	}
 
-	/* Cover Image */
 	.project-cover {
 		background: linear-gradient(to bottom, #fdff96 0%, #fdff96 50%, white 50%, white 100%);
 		padding: 0 10px clamp(1rem, 2vw, 1.5rem);
 		overflow-x: hidden;
 	}
-
 	.project-cover img {
 		width: 100%;
 		max-width: 100%;
 		height: auto;
 		display: block;
 		border-radius: 20px;
+		background: white;
 		box-sizing: border-box;
 	}
 
-	/* Project Info Box */
 	.project-info {
 		padding: clamp(1rem, 2vw, 1.5rem) 10px;
 		overflow-x: hidden;
 	}
-
 	.info-box {
 		background: #4a5b4c;
 		border-radius: 20px;
@@ -228,7 +223,6 @@
 		max-width: 100%;
 		box-sizing: border-box;
 	}
-
 	.info-main h2 {
 		color: #fdff96;
 		font-size: clamp(1.5rem, 2.5vw, 2rem);
@@ -237,7 +231,6 @@
 		line-height: 1;
 		padding-top: 0;
 	}
-
 	.info-main p {
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.2vw, 1rem);
@@ -247,11 +240,7 @@
 		margin: 0 0 1rem 0;
 		padding: 0;
 	}
-
-	.info-main p:last-child {
-		margin-bottom: 0;
-	}
-
+	.info-main p:last-child { margin-bottom: 0; }
 	.meta {
 		display: flex;
 		flex-direction: column;
@@ -259,20 +248,13 @@
 		align-self: end;
 		margin-bottom: 2rem;
 	}
-
-	.meta-item {
-		display: flex;
-		flex-direction: column;
-		gap: 0.1rem;
-	}
-
+	.meta-item { display: flex; flex-direction: column; gap: 0.1rem; }
 	.meta-item .label {
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.4vw, 1.1rem);
 		font-weight: 500;
 		line-height: 1;
 	}
-
 	.meta-item .value {
 		color: #fdff96;
 		font-size: clamp(0.9rem, 1.2vw, 1rem);
@@ -280,7 +262,6 @@
 		font-weight: 300;
 		padding-top: 8px;
 	}
-
 	.info-tags {
 		display: flex;
 		flex-direction: column;
@@ -288,7 +269,6 @@
 		align-items: flex-end;
 		justify-content: flex-end;
 	}
-
 	.tag {
 		background: transparent;
 		border: 1px solid #fdff96;
@@ -303,69 +283,29 @@
 		align-items: center;
 	}
 
-	/* Project Images Grid */
 	.project-images {
 		padding: clamp(1rem, 2vw, 1.5rem) 10px clamp(2rem, 4vw, 3rem);
 		overflow-x: hidden;
 	}
-
 	.images-grid {
 		display: grid;
 		gap: clamp(1rem, 2vw, 2rem);
 		max-width: 100%;
 	}
-
-	/* 3 images: all in one row */
-	.images-grid[data-count="3"] {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	/* 4 images: 2 rows with 2 images each */
+	.images-grid[data-count="3"] { grid-template-columns: repeat(3, 1fr); }
 	.images-grid[data-count="4"] {
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-rows: 1fr;
 	}
-
-	.images-grid[data-count="4"] img {
-		aspect-ratio: 16/9;
-		object-fit: cover;
-	}
-
-	/* 5 images: first row 2, second row 3 */
-	.images-grid[data-count="5"] {
-		grid-template-columns: repeat(6, 1fr);
-	}
-
-	.images-grid[data-count="5"] .img-1 {
-		grid-column: span 3;
-	}
-
-	.images-grid[data-count="5"] .img-2 {
-		grid-column: span 3;
-	}
-
-	.images-grid[data-count="5"] .img-3 {
-		grid-column: span 2;
-	}
-
-	.images-grid[data-count="5"] .img-4 {
-		grid-column: span 2;
-	}
-
-	.images-grid[data-count="5"] .img-5 {
-		grid-column: span 2;
-	}
-
-	/* Default for 1-2 images */
-	.images-grid[data-count="1"],
-	.images-grid[data-count="2"] {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	.images-grid[data-count="1"] img {
-		grid-column: span 2;
-	}
-
+	.images-grid[data-count="4"] img { aspect-ratio: 16/9; object-fit: contain; }
+	.images-grid[data-count="5"] { grid-template-columns: repeat(6, 1fr); }
+	.images-grid[data-count="5"] .img-1 { grid-column: span 3; }
+	.images-grid[data-count="5"] .img-2 { grid-column: span 3; }
+	.images-grid[data-count="5"] .img-3 { grid-column: span 2; }
+	.images-grid[data-count="5"] .img-4 { grid-column: span 2; }
+	.images-grid[data-count="5"] .img-5 { grid-column: span 2; }
+	.images-grid[data-count="1"], .images-grid[data-count="2"] { grid-template-columns: repeat(2, 1fr); }
+	.images-grid[data-count="1"] img { grid-column: span 2; }
 	.images-grid img {
 		width: 100%;
 		max-width: 100%;
@@ -377,20 +317,12 @@
 		box-sizing: border-box;
 	}
 
-	/* Project Content */
-	.project-content {
-		padding: clamp(2rem, 4vw, 3rem) 10px;
-		overflow-x: hidden;
-	}
-
-	/* More Work Section */
 	.more-work {
 		background: #4a5b4c;
 		padding: clamp(1.5rem, 3vw, 2rem) 10px clamp(3rem, 6vw, 5rem);
 		overflow-x: hidden;
 		font-family: 'Outfit', sans-serif;
 	}
-
 	.more-work h2 {
 		color: #fdff96;
 		font-size: clamp(2rem, 4vw, 3rem);
@@ -398,14 +330,12 @@
 		margin-bottom: clamp(2rem, 3vw, 3rem);
 		text-transform: lowercase;
 	}
-
 	.work-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: clamp(1rem, 2vw, 1.5rem);
 		max-width: 100%;
 	}
-
 	.work-card {
 		display: block;
 		position: relative;
@@ -417,9 +347,7 @@
 		text-decoration: none;
 		transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	}
-
-	.work-card img,
-	.work-card .placeholder {
+	.work-card img, .work-card .placeholder {
 		width: 100%;
 		max-width: 100%;
 		height: 100%;
@@ -428,223 +356,66 @@
 		box-sizing: border-box;
 		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 	}
-
 	@media (hover: hover) {
 		.work-card:hover {
 			border-radius: 60%;
 			transform: scale(0.95) rotate(-25deg);
 		}
-
-		.work-card:hover img,
-		.work-card:hover .placeholder {
+		.work-card:hover img, .work-card:hover .placeholder {
 			transform: rotate(25deg) scale(1.2);
 		}
 	}
+	.work-card .placeholder { background: #e8d9d9; }
 
-	.work-card .placeholder {
-		background: #e8d9d9;
-	}
-
-	/* Responsive */
 	@media (max-width: 1024px) {
-		.info-box {
-			grid-template-columns: 1fr 1fr;
-			gap: clamp(1.5rem, 3vw, 3rem);
-		}
-
-		.info-tags {
-			align-items: flex-start;
-			flex-direction: row;
-			flex-wrap: wrap;
-			grid-column: 1 / -1;
-		}
-
-		.meta {
-			flex-direction: row;
-			gap: 2rem;
-		}
-
-		.work-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
+		.info-box { grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 3vw, 3rem); }
+		.info-tags { align-items: flex-start; flex-direction: row; flex-wrap: wrap; grid-column: 1 / -1; }
+		.meta { flex-direction: row; gap: 2rem; }
+		.work-grid { grid-template-columns: repeat(2, 1fr); }
 	}
-
 	@media (max-width: 900px) {
-		.project-hero {
-			padding: 80px 1.5rem 0;
-		}
-
-		.project-cover {
-			padding-inline: 1.5rem;
-		}
-
-		.project-info {
-			padding-inline: 1.5rem;
-		}
-
-		.project-images {
-			padding-inline: 1.5rem;
-		}
-
-		.project-content {
-			padding-inline: 1.5rem;
-		}
-
-		.more-work {
-			padding-inline: 1.5rem;
-		}
-
-		.info-box {
-			grid-template-columns: 1fr;
-		}
-
-		.project-cover img {
-			border-radius: 16px;
-		}
-
-		.images-grid img {
-			border-radius: 16px;
-		}
-
-		.work-card:hover {
-			border-radius: 20px;
-			transform: none;
-		}
-
-		.work-card:hover img,
-		.work-card:hover .placeholder {
-			transform: none;
-		}
+		.project-hero { padding: 80px 1.5rem 0; }
+		.project-cover { padding-inline: 1.5rem; }
+		.project-info { padding-inline: 1.5rem; }
+		.project-images { padding-inline: 1.5rem; }
+		.more-work { padding-inline: 1.5rem; }
+		.info-box { grid-template-columns: 1fr; }
+		.project-cover img { border-radius: 16px; }
+		.images-grid img { border-radius: 16px; }
+		.work-card:hover { border-radius: 20px; transform: none; }
+		.work-card:hover img, .work-card:hover .placeholder { transform: none; }
 	}
-
 	@media (max-width: 768px) {
-		.project-hero {
-			padding: 40px 1rem 0;
-		}
-
-		.project-cover {
-			padding-inline: 1rem;
-		}
-
-		.project-info {
-			padding-inline: 1rem;
-		}
-
-		.project-images {
-			padding-inline: 1rem;
-		}
-
-		.project-content {
-			padding-inline: 1rem;
-		}
-
-		.more-work {
-			padding-inline: 1rem;
-		}
-
-		.images-grid,
-		.images-grid[data-count="3"],
-		.images-grid[data-count="4"],
-		.images-grid[data-count="5"] {
-			grid-template-columns: 1fr !important;
-		}
-
-		.images-grid[data-count="5"] .img-1,
-		.images-grid[data-count="5"] .img-2,
-		.images-grid[data-count="5"] .img-3,
-		.images-grid[data-count="5"] .img-4,
-		.images-grid[data-count="5"] .img-5 {
-			grid-column: span 1 !important;
-		}
-
-		.images-grid[data-count="1"] img {
-			grid-column: span 1 !important;
-		}
-
-		.work-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.project-cover img {
-			border-radius: 12px;
-		}
-
-		.images-grid img {
-			border-radius: 12px;
-		}
+		.project-hero { padding: 40px 1rem 0; }
+		.project-cover { padding-inline: 1rem; }
+		.project-info { padding-inline: 1rem; }
+		.project-images { padding-inline: 1rem; }
+		.more-work { padding-inline: 1rem; }
+		.images-grid, .images-grid[data-count="3"], .images-grid[data-count="4"], .images-grid[data-count="5"] { grid-template-columns: 1fr !important; }
+		.images-grid[data-count="5"] .img-1, .images-grid[data-count="5"] .img-2, .images-grid[data-count="5"] .img-3, .images-grid[data-count="5"] .img-4, .images-grid[data-count="5"] .img-5 { grid-column: span 1 !important; }
+		.images-grid[data-count="1"] img { grid-column: span 1 !important; }
+		.work-grid { grid-template-columns: 1fr; }
+		.project-cover img { border-radius: 12px; }
+		.images-grid img { border-radius: 12px; }
 	}
-
 	@media (max-width: 600px) {
-		.project-hero {
-			padding: 35px 1rem 0;
-		}
-
-		.project-hero h1 {
-			font-size: 2rem;
-		}
-
-		.info-box {
-			padding: clamp(1.5rem, 4vw, 2.5rem);
-			border-radius: 16px;
-		}
-
-		.tag {
-			padding: 0.6rem 1.2rem;
-			font-size: 0.9rem;
-		}
-
-		.work-card {
-			border-radius: 16px;
-		}
+		.project-hero { padding: 35px 1rem 0; }
+		.project-hero h1 { font-size: 2rem; }
+		.info-box { padding: clamp(1.5rem, 4vw, 2.5rem); border-radius: 16px; }
+		.tag { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+		.work-card { border-radius: 16px; }
 	}
-
 	@media (max-width: 480px) {
-		.project-hero {
-			padding: 30px 1rem 0;
-		}
-
-		.project-cover img {
-			border-radius: 8px;
-			max-height: 300px;
-		}
-
-		.info-box {
-			padding: 1.5rem;
-			gap: 1.5rem;
-			border-radius: 12px;
-		}
-
-		.info-main h2 {
-			font-size: 1.25rem;
-		}
-
-		.info-main p {
-			font-size: 0.9rem;
-		}
-
-		.tag {
-			padding: 0.5rem 1rem;
-			font-size: 0.8rem;
-		}
-
-		.images-grid {
-			gap: 0.75rem;
-		}
-
-		.images-grid img {
-			border-radius: 8px;
-		}
-
-		.more-work {
-			padding: 2.5rem 1rem;
-		}
-
-		.more-work h2 {
-			font-size: 1.75rem;
-		}
-
-		.work-card {
-			border-radius: 12px;
-		}
+		.project-hero { padding: 30px 1rem 0; }
+		.project-cover img { border-radius: 8px; max-height: 300px; }
+		.info-box { padding: 1.5rem; gap: 1.5rem; border-radius: 12px; }
+		.info-main h2 { font-size: 1.25rem; }
+		.info-main p { font-size: 0.9rem; }
+		.tag { padding: 0.5rem 1rem; font-size: 0.8rem; }
+		.images-grid { gap: 0.75rem; }
+		.images-grid img { border-radius: 8px; }
+		.more-work { padding: 2.5rem 1rem; }
+		.more-work h2 { font-size: 1.75rem; }
+		.work-card { border-radius: 12px; }
 	}
 </style>

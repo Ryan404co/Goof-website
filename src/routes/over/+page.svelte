@@ -1,13 +1,20 @@
 <script lang="ts">
-	import FooterInverse from "$lib/components/layout/FooterInverse.svelte";
-	import Header from "$lib/components/layout/Header.svelte";
-	import HeroOver from "$lib/components/over/HeroOver.svelte";
+	import FooterInverse from '$lib/components/layout/FooterInverse.svelte';
+	import Header from '$lib/components/layout/Header.svelte';
+	import HeroOver from '$lib/components/over/HeroOver.svelte';
 	import Seo from '$lib/components/Seo.svelte';
-	import { StoryblokComponent } from '$lib/storyblok';
+	import OverGoof from '$lib/components/bloks/OverGoof.svelte';
+	import { page } from '$app/stores';
+	import { textString } from '$lib/cms/texts';
 
-	export let data;
-
-	$: story = data.story;
+	$: t = $page.data.texts;
+	$: blok = {
+		title: textString(t, 'over.body.title', 'over goof'),
+		intro: textString(t, 'over.body.intro', ''),
+		body1: textString(t, 'over.body.body1', ''),
+		body2: textString(t, 'over.body.body2', ''),
+		image: { filename: textString(t, 'over.body.image_url', '') }
+	};
 </script>
 
 <Seo
@@ -17,15 +24,8 @@
 
 <Header />
 <div id="main-content">
-<HeroOver />
-
-{#if story?.content}
-	{#each story.content.body || [] as blok}
-		<StoryblokComponent {blok} />
-	{/each}
-{:else}
-	<p style="padding: 2rem; text-align: center;">No content found. Make sure the "over" page exists in Storyblok.</p>
-{/if}
+	<HeroOver />
+	<OverGoof {blok} />
 </div>
 
 <FooterInverse />

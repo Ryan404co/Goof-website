@@ -3,10 +3,28 @@
 	import FooterInverse from '$lib/components/layout/FooterInverse.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
+	import { textString } from '$lib/cms/texts';
 	import type { ActionData, PageData } from './$types';
 
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let submitting = $state(false);
+
+	const t = $derived($page.data.texts);
+	const heroTitle = $derived(textString(t, 'contact.hero.title', 'kennismaken?'));
+	const heroSub1 = $derived(textString(t, 'contact.hero.subtitle_line1', 'leuk! neem contact op en we'));
+	const heroSub2 = $derived(textString(t, 'contact.hero.subtitle_line2', 'plannen een gesprek.'));
+	const email = $derived(textString(t, 'contact.hero.email', 'info@goof.design'));
+	const phone = $derived(textString(t, 'contact.hero.phone', '+31 6 24576082'));
+	const kvk = $derived(textString(t, 'contact.boring.kvk', 'KVK: 90939670'));
+	const btw = $derived(textString(t, 'contact.boring.btw', 'BTW: NL004067438B58'));
+	const iban = $derived(textString(t, 'contact.boring.iban', 'IBAN: NL89 KNAB 0776 3092 85'));
+	const formTitle = $derived(textString(t, 'contact.form.title', 'of stuur een bericht via het formulier'));
+	const formSubtitle = $derived(textString(t, 'contact.form.subtitle', 'en ik neem zo snel mogelijk contact met je op!'));
+	const successTitle = $derived(textString(t, 'contact.form.success_title', 'bedankt voor je bericht!'));
+	const successText = $derived(textString(t, 'contact.form.success_text', 'ik neem zo snel mogelijk contact met je op.'));
+
+	const phoneHref = (raw: string) => 'tel:' + raw.replace(/[^0-9+]/g, '');
 </script>
 
 <Seo
@@ -20,27 +38,27 @@
 	<!-- Hero Section -->
 	<section class="contact-hero">
 		<div class="container-hero">
-			<h1>kennismaken?</h1>
-			<p class="subtitle">leuk! neem contact op en we<br> plannen een gesprek.</p>
+			<h1>{heroTitle}</h1>
+			<p class="subtitle">{heroSub1}<br>{heroSub2}</p>
 
 			<div class="hero-content">
 				<div class="contact-info">
 					<div class="info-item">
 						<span class="label">mailen</span>
-						<a href="mailto:info@goof.design" class="value">info@goof.design</a>
+						<a href={`mailto:${email}`} class="value">{email}</a>
 					</div>
 
 					<div class="info-item">
 						<span class="label">bellen</span>
-						<a href="tel:+31624576082" class="value">+31 6 24576082</a>
+						<a href={phoneHref(phone)} class="value">{phone}</a>
 					</div>
 				</div>
 
 				<div class="boring-stuff">
 					<span class="boring-label">boring stuff</span>
-					<p>KVK: 90939670</p>
-					<p>BTW: NL004067438B58</p>
-					<p>IBAN: NL89 KNAB 0776 3092 85</p>
+					<p>{kvk}</p>
+					<p>{btw}</p>
+					<p>{iban}</p>
 				</div>
 			</div>
 		</div>
@@ -51,14 +69,14 @@
 		<div class="container-form">
 			<div class="form-wrapper">
 				<div class="form-intro">
-					<h2>of stuur een bericht via het formulier</h2>
-					<p>en ik neem zo snel<br>mogelijk contact<br>met je op!</p>
+					<h2>{formTitle}</h2>
+					<p>{formSubtitle}</p>
 				</div>
 
 				{#if form?.success}
 					<div class="form-success">
-						<h3>bedankt voor je bericht!</h3>
-						<p>ik neem zo snel mogelijk contact met je op.</p>
+						<h3>{successTitle}</h3>
+						<p>{successText}</p>
 					</div>
 				{:else}
 					<form
@@ -329,7 +347,7 @@
 
 	.form-group {
 		display: flex;
-		margin-top: -1rem;
+		margin-top: 0;
 	}
 
 	.form-group textarea {

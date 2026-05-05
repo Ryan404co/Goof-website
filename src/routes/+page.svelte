@@ -5,9 +5,13 @@
 	import Header from '$lib/components/layout/Header.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
 	import Seo from '$lib/components/Seo.svelte';
-	import { optimizeStoryblokImage } from '$lib/storyblokImage';
+	import { optimizeImage, srcSet } from '$lib/storyblokImage';
+	import type { PageData } from './$types';
 
-	export let data;
+	export let data: PageData;
+
+	const TILE_WIDTHS = [400, 600, 800, 1200];
+	const TILE_SIZES = '(min-width: 769px) 50vw, 100vw';
 </script>
 
 <Seo
@@ -17,11 +21,13 @@
 
 <svelte:head>
 	{#each (data.projects ?? []).slice(0, 2) as p}
-		{#if p.content?.hoofdAfbeelding?.filename}
+		{#if p.hoofd_afbeelding_url}
 			<link
 				rel="preload"
 				as="image"
-				href={optimizeStoryblokImage(p.content.hoofdAfbeelding.filename, 1200)}
+				href={optimizeImage(p.hoofd_afbeelding_url, 800)}
+				imagesrcset={srcSet(p.hoofd_afbeelding_url, TILE_WIDTHS)}
+				imagesizes={TILE_SIZES}
 				fetchpriority="high"
 			/>
 		{/if}
@@ -30,11 +36,9 @@
 
 <Header />
 <div id="main-content">
-<Hero />
-
-<ProjectList projects={data.projects} />
-
-<TilesHero />
+	<Hero />
+	<ProjectList projects={data.projects} />
+	<TilesHero />
 </div>
 
 <Footer />

@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { textString } from '$lib/cms/texts';
+
+	$: ctaText = textString($page.data.texts, 'header.cta_text', "let's goof");
 
 	let menuOpen = false;
 
@@ -40,7 +43,7 @@
 			<a href="/contact" class:active={isActive('/contact')}>contact</a>
 		</nav>
 
-		<a href="/contact" class="cta">let's goof</a>
+		<a href="/contact" class="cta">{ctaText}</a>
 
 		<!-- Mobile menu button -->
 		<button
@@ -64,7 +67,7 @@
 				<a href="/diensten" on:click={closeMenu} class:active={isActive('/diensten')}>diensten</a>
 				<a href="/over" on:click={closeMenu} class:active={isActive('/over')}>over</a>
 				<a href="/contact" on:click={closeMenu} class:active={isActive('/contact')}>contact</a>
-				<a href="/contact" class="mobile-cta" on:click={closeMenu}>let's goof</a>
+				<a href="/contact" class="mobile-cta" on:click={closeMenu}>{ctaText}</a>
 			</nav>
 		</div>
 	{/if}
@@ -197,12 +200,11 @@
 		padding: 0.75rem 1rem;
 		border: 1px solid transparent;
 		border-radius: 50px;
-		transition: opacity 0.2s ease;
 		font-family: 'Outfit', sans-serif;
 	}
 
-	.mobile-nav a:hover {
-		opacity: 0.8;
+	@media (hover: hover) {
+		.mobile-nav a:hover { opacity: 0.8; }
 	}
 
 	.mobile-nav a.active {

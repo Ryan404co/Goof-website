@@ -24,6 +24,7 @@ const config = {
 					'data:',
 					'https://a.storyblok.com',
 					'https://img2.storyblok.com',
+					'https://*.supabase.co',
 					'https://www.googletagmanager.com',
 					'https://*.google-analytics.com'
 				],
@@ -31,6 +32,7 @@ const config = {
 					'self',
 					'https://api.storyblok.com',
 					'https://api-us.storyblok.com',
+					'https://*.supabase.co',
 					'https://www.google-analytics.com',
 					'https://*.google-analytics.com',
 					'https://*.analytics.google.com',

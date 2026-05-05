@@ -1,18 +1,24 @@
 <script lang="ts">
-  // This component expects to be rendered by Storyblok with a 'blok' prop.
-  // Fields needed in Storyblok component "OverGoof":
-  // - title (Text)
-  // - intro (Textarea)  → short paragraph
-  // - body1 (Textarea)  → paragraph
-  // - body2 (Textarea)  → paragraph (optional)
-  // - image (Asset)     → main photo
-  export let blok: any = {};
+  import { optimizeImage, srcSet } from '$lib/storyblokImage';
 
-  const title = blok?.title ?? 'over goof';
-  const intro = blok?.intro ?? '';
-  const body1 = blok?.body1 ?? '';
-  const body2 = blok?.body2 ?? '';
-  const image = blok?.image;
+  interface Blok {
+    title?: string;
+    intro?: string;
+    body1?: string;
+    body2?: string;
+    image?: { filename?: string; alt?: string };
+  }
+  export let blok: Blok = {};
+
+  $: title = blok.title || 'over goof';
+  $: intro = blok.intro || '';
+  $: body1 = blok.body1 || '';
+  $: body2 = blok.body2 || '';
+  $: image = blok.image;
+
+  // Image displays at ~640px tall desktop, ~420px mobile in a square-ish container
+  const PORTRAIT_WIDTHS = [400, 600, 900, 1280];
+  const PORTRAIT_SIZES = '(min-width: 1025px) 50vw, 100vw';
 </script>
 
 <section class="about-section">
@@ -27,7 +33,16 @@
 
     <div class="about-image">
       {#if image?.filename}
-        <img src={image.filename} alt={image.alt || title} loading="lazy" />
+        <img
+          src={optimizeImage(image.filename, 900)}
+          srcset={srcSet(image.filename, PORTRAIT_WIDTHS)}
+          sizes={PORTRAIT_SIZES}
+          alt={image.alt || title}
+          width="900"
+          height="1333"
+          loading="lazy"
+          decoding="async"
+        />
       {/if}
     </div>
   </div>

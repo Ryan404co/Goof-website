@@ -1,30 +1,24 @@
 <script lang="ts">
-  // Hardcoded hero (no CMS)
+  import { page } from '$app/stores';
+  import { textList, textString } from '$lib/cms/texts';
+
   const STEP = '4.2vw';
-  const lines: string[] = [
+  $: lines = textList($page.data.texts, 'home.hero.headline_lines', [
     'streven om',
     'de wereld iets',
     'echts te geven'
-  ];
-  const subtitleParagraphs: string[][] = [
-    [
-      `Goof brengt merken de wereld in die echt zijn. Geen grote, opgepoetste praatjes en gepolijste perfectie, maar merken met echte verhalen en een eigen, eerlijke uitstraling. Of je je merk nu naar buiten brengt met een rauw randje of een goede knipoog, de wereld snakt naar iets echts. En precies dat is hoe Goof jouw bedrijf of organisatie omtovert tot een merk dat ogen opent.`
-    ],
-    [
-      `Wat is echt? Echt is rauw, echt heeft karakter, echt is knullig, echt is niet perfect, echt is oprecht en echt is wat het is.`
-    ]
-  ];
+  ]);
+  $: paragraphs = [
+    textString($page.data.texts, 'home.hero.paragraph_1', ''),
+    textString($page.data.texts, 'home.hero.paragraph_2', '')
+  ].filter(Boolean);
 </script>
 
 <section class="hero">
   <div class="hero__grid">
     <div class="hero__copy">
-      {#each subtitleParagraphs as segments}
-        <p class="lead">
-          {#each segments as segment, i}
-            {#if i > 0}<br />{/if}{segment}
-          {/each}
-        </p>
+      {#each paragraphs as paragraph}
+        <p class="lead">{paragraph}</p>
       {/each}
     </div>
     <div class="hero__headline" aria-label={lines.join(' ')}>
