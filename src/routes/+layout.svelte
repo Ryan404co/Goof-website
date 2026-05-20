@@ -51,8 +51,14 @@
 		});
 	});
 
-	afterNavigate(() => {
+	afterNavigate((navigation) => {
 		document.documentElement.style.scrollBehavior = '';
+
+		const isBackForward = navigation.type === 'popstate';
+		const hasHash = !!navigation.to?.url.hash;
+		if (browser && !isBackForward && !hasHash) {
+			window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+		}
 
 		if (browser && typeof (window as any).gtag === 'function') {
 			(window as any).gtag('config', GA4_ID, { page_path: window.location.pathname });
